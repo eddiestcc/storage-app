@@ -1,0 +1,7 @@
+.rental-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+.column{
+   display: flex;
+}
