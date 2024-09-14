@@ -5,3 +5,7 @@
 .column{
    display: flex;
 }
+
+main{
+    margin-top: 50px;
+}
