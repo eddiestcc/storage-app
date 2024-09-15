@@ -21,6 +21,9 @@ const Nav = () => {
             <div className="button">
                 <li>Retail</li>
             </div>
+            <div className="button">
+                <li>Logout</li>
+            </div>
         </nav>
     )
 }
