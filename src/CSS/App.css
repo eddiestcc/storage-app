@@ -44,6 +44,12 @@
     justify-content: center;
     background-color: white;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.no-decoration{
+  text-decoration: none;
+  color: black;
 }
 
 .button:hover {

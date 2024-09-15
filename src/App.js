@@ -13,16 +13,6 @@ import './CSS/App.css'
 function App() {
 
     return (
-      // <div className="App">
-      //    <div className="wrapper">
-      //       <div className="sidebar">
-      //       <Nav />
-      //       </div>
-      //       <div className="main">
-      //       <Signin  />
-      //       </div>
-      //   </div>
-      // </div>
       <>
         <div className='App'>
           <div className='wrapper'>
@@ -34,6 +24,9 @@ function App() {
                   <Route path="/" element={<Signin />}/>
                   <Route path="/dashboard" element={<Dashboard />}/>
                   <Route path="/rental" element={<Rental />}/>
+                  <Route path="/units" element={<Units />}/>
+                  <Route path="/search" element={<Search />}/>
+                  <Route path="/retail" element={<Retail />}/>
                 </Routes>
               </div>
             </div>

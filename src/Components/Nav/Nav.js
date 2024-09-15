@@ -1,4 +1,5 @@
 import logo from '../../logo.png'
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
     return(
@@ -7,22 +8,46 @@ const Nav = () => {
                 <img className='logo' src={logo} alt='logo'></img>
             </div>
             <div className="button">
-                <li>Dashboard</li>
+                <NavLink  to="/dashboard" 
+                className={({ isActive }) => {
+                return isActive ? "no-decoration" : "no-decoration";
+                }}
+                > Dashboard</NavLink>
             </div>
             <div className="button">
-                <li>New Rental</li>
+                <NavLink to="/rental"
+                className={({ isActive }) => {
+                return isActive ? "no-decoration" : "no-decoration";
+                }}
+                >New Rental</NavLink>
             </div>
             <div className="button">
-                <li>Units</li>
+                <NavLink to="/units"
+                className={({ isActive }) => {
+                return isActive ? "no-decoration" : "no-decoration";
+                }}
+                >Units</NavLink>
             </div>
             <div className="button">
-                <li>Search</li>
+                <NavLink to="/search"
+                className={({ isActive }) => {
+                return isActive ? "no-decoration" : "no-decoration";
+                }}
+                >Search</NavLink>
             </div>
             <div className="button">
-                <li>Retail</li>
+                <NavLink to="/retail"
+                className={({ isActive }) => {
+                return isActive ? "no-decoration" : "no-decoration";
+                }}
+                >Retail</NavLink>
             </div>
             <div className="button">
-                <li>Logout</li>
+                <NavLink to="/"
+                className={({ isActive }) => {
+                return isActive ? "no-decoration" : "no-decoration";
+                }}
+                > Logout</NavLink>
             </div>
         </nav>
     )
