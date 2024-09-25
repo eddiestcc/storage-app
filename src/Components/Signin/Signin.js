@@ -1,59 +1,57 @@
-
 import React from "react";
+import { NavLink } from 'react-router-dom';
+
+
         const Signin = () => {
                 return(
-                    <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m  tc mw6 center shadow-5">
-                        <main className="pa4 black-80">
-                            {/* LOGIN FORM START */}
-                            <div>
-                                <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                                    <legend className="f4 fw6 ph0 mh0">Sign In</legend>
-                                    {/* EMAIL START  */}
-                                    <div className="mt3">
-                                        <label 
-                                            className="db fw6 lh-copy f6" 
-                                            htmlFor="email-address">
-                                            Email
-                                         </label>
-                                        <input 
-                                            className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                            type="email" 
-                                            name="email-address"  
-                                            id="email-address"
-                                        />
-                                    </div>
-                                    {/* EMAIL END  */}
-                                    {/* PASSWORD START  */}
-                                    <div className="mv3">
-                                        <label 
-                                            className="db fw6 lh-copy f6" 
-                                            htmlFor="password">
-                                            Password
-                                        </label>
-                                        <input 
-                                            className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                                            type="password" 
-                                            name="password"  
-                                            id="password"
-
-                                        />
-                                    </div>
-                                    {/* PASSWORD END  */}
-                                </fieldset>
-                                {/* LOGIN FORM END  */}
-                                {/* SIGN IN BUTTON START  */}
-                                <div className="">
-                                    <input 
-                                        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
-                                        type="submit" 
-                                        value="Sign in" 
-
-                                    />
+                <div className="hero bg-slate-100 min-h-screen">
+                    <div className="hero-content flex-col lg:flex-row-reverse">
+                        <div className="text-center lg:text-left">
+                        <h1 className="text-5xl font-bold">Login now!</h1>
+                        <p className="py-6">
+                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                            quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        </p>
+                        </div>
+                        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                            <form className="card-body">
+                                <div className="form-control">
+                                    <label className="input input-bordered flex items-center gap-2">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 16 16"
+                                            fill="currentColor"
+                                            className="h-4 w-4 opacity-90">
+                                            <path
+                                            d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+                                            <path
+                                            d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
+                                        </svg>
+                                        <input type="text" className="grow" placeholder="Email" />
+                                    </label>
+                                    <label className="input input-bordered flex items-center gap-2">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 16 16"
+                                            fill="currentColor"
+                                            className="h-4 w-4 opacity-90">
+                                            <path
+                                            fillRule="evenodd"
+                                            d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                                            clipRule="evenodd" />
+                                        </svg>
+                                        <input type="password" className="grow" value="password" />
+                                    </label>
+                                    <NavLink 
+                                    className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"  
+                                    to="/dashboard"> 
+                                    Sign in
+                                    </NavLink>
                                 </div>
-                                {/* SIGN IN BUTTON END  */}
-                            </div>
-                        </main>
-                    </article>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 )
             }
         

@@ -1,14 +1,29 @@
-import logo from '../../logo.png'
+import DashCard from '../DashCard/DashCard';
+import Logout from '../Logout/Logout';
 
 import React from "react";
+
         const Dashboard = () => {
                 return(
-                    <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m  tc mw6 center shadow-5">
-                        <main className="pa4 black-80">
-                            <img className='logo' src={logo} alt='logo'></img>
-                            <h1>Dashboard</h1>
-                        </main>
-                    </article>
+                    <div>
+                        <Logout />
+                        <menu className='justify-center align-center h-screen'>
+                            {/* COLUMN 1  */}
+                            <div className='padding-right padding-top'>
+                                {/* CARD 1  */}
+                                <DashCard />
+                                {/* CARD 2 */}
+                                <DashCard />
+                            </div>
+                            {/* COLUMN 2  */}
+                            <div className='padding-right padding-top'>
+                                {/* CARD 3 */}
+                                <DashCard />
+                                {/* CARD 4  */}
+                                <DashCard />
+                            </div>
+                        </menu>
+                    </div>
                 )
             }
         

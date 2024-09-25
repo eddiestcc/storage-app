@@ -5,9 +5,97 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.signin-layout{
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+  height: 100vh;
+}
+
+.card {
+  justify-content: center;
+}
+
+.drawer {
+z-index: 1;
+}
+
+.nav-button {
+  padding: 45px;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: end;
+}
+
+.padding-bottom {
+  padding-bottom: 5rem;
+}
+
+.hero-align-start {
+  align-items: flex-start;
+}
+
+.padding-top {
+  padding-top: 5rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.padding-right {
+  padding-right: 5rem;
+}
+
+.padding-right-30 {
+  padding-right: 30px;
+}
+
+.padding-bottom {
+  padding-bottom: 6rem;
+}
+
+
+.grow { 
+  transition: all .2s ease-in-out; 
+}
+
+.grow:hover { 
+  transform: scale(1.1); 
+}
+
+.space-dash-card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.height-350 {
+  height: 350px;
+}
+
+.contactform-card {
+  border-radius: var(--rounded-box, 1rem);
+}
+
+.position-left {
+  position: relative;
+  left: -80px;
 }
