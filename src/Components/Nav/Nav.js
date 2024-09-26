@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
     return(
-        // NEW
         <div className="drawer">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
@@ -25,43 +24,43 @@ const Nav = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-base-200 text-base-content min-h-full p-20">
+                <ul className="menu bg-base-200 text-base-content min-h-full p-20 rounded-r-2xl">
                 {/* Sidebar content here */} 
-                <div className='flex justify-center padding-below'>
+                <div className='flex justify-center'>
                    <img className="w-36 rounded-full" alt='logo' src={logo}></img>
                  </div>
                 <div>
-                    <NavLink className="text-4xl text-4xl btn btn-block nav-button" to="/dashboard" > 
+                    <NavLink className="flex content-center text-4xl text-4xl btn btn-block pt-24 p-11 pb-16" to="/dashboard" > 
                     {/* BUTTON TITLE HERE  */}
                     Dashboard
                     </NavLink>
                  </div>
                  <div>
-                    <NavLink className="text-4xl  btn btn-block nav-button" to="/rental" > 
+                    <NavLink className="flex content-center text-4xl  btn btn-block p-11 pb-16" to="/rental" > 
                     {/* BUTTON TITLE HERE  */}
-                    New Rental
+                    Rental
                     </NavLink>
                  </div>
                  <div>
-                    <NavLink className="text-4xl btn btn-block nav-button" to="/units" > 
+                    <NavLink className="flex content-center text-4xl btn btn-block p-11 pb-16" to="/units" > 
                     {/* BUTTON TITLE HERE  */}
                     Units
                     </NavLink>
                  </div>
                  <div>
-                    <NavLink className="text-4xl  btn btn-block nav-button" to="/search" > 
+                    <NavLink className="flex content-center text-4xl  btn btn-block p-11 pb-16" to="/search" > 
                     {/* BUTTON TITLE HERE  */}
                     Search
                     </NavLink>
                  </div>
                  <div>
-                    <NavLink className=" text-4xl btn btn-block nav-button" to="/retail" > 
+                    <NavLink className=" flex content-center text-4xl btn btn-block p-11 pb-16" to="/retail" > 
                     {/* BUTTON TITLE HERE  */}
                     Retail
                     </NavLink>
                  </div>
                  <div>
-                    <NavLink className="text-4xl btn btn-block nav-button" to="/" > 
+                    <NavLink className="flex content-center text-4xl btn btn-block p-11 pb-16" to="/" > 
                     {/* BUTTON TITLE HERE  */}
                     Logout
                     </NavLink>
@@ -69,63 +68,6 @@ const Nav = () => {
                 </ul>
             </div>
         </div>
-
-        // OLD
-        // <nav className="list pl0">
-        //     <div>
-        //         <img className='logo-radius' src={logo} alt='logo'></img>
-        //         <button className='btn'> hello </button>
-        //     </div>
-        //     <div>
-        //         <NavLink 
-        //         to="/dashboard" 
-        //         className={({ isActive }) => {
-        //         return isActive ? "nav-button" : "nav-button";
-        //         }}
-        //         > Dashboard</NavLink>
-        //     </div>
-        //     <div>
-        //         <NavLink 
-        //         to="/rental"
-        //         className={({ isActive }) => {
-        //         return isActive ? "nav-button" : "nav-button";
-        //         }}
-        //         >New Rental</NavLink>
-        //     </div>
-        //     <div>
-        //         <NavLink 
-        //         to="/units"
-        //         className={({ isActive }) => {
-        //         return isActive ? "nav-button" : "nav-button";
-        //         }}
-        //         >Units</NavLink>
-        //     </div>
-        //     <div>
-        //         <NavLink 
-        //         to="/search"
-        //         className={({ isActive }) => {
-        //         return isActive ? "nav-button" : "nav-button";
-        //         }}
-        //         >Search</NavLink>
-        //     </div>
-        //     <div>
-        //         <NavLink 
-        //         to="/retail"
-        //         className={({ isActive }) => {
-        //         return isActive ? "nav-button" : "nav-button";
-        //         }}
-        //         >Retail</NavLink>
-        //     </div>
-        //     <div>
-        //         <NavLink 
-        //         to="/"
-        //         className={({ isActive }) => {
-        //         return isActive ? "nav-button" : "nav-button";
-        //         }}
-        //         // onClick={changeRoute({route: 'signin'})}
-        //         > Logout</NavLink>
-        //     </div>
-        // </nav>
     )
 }
 

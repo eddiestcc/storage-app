@@ -5,9 +5,9 @@ import React from "react";
         const Logout = () => {
 
                 return(
-                    <span className='justify-end'>
+                    <span className='flex justify-end'>
                         <NavLink className="btn btn-ghost" to="/" >
-                            <svg class="h-8 w-8 text-base-100"  
+                            <svg className="h-8 w-8 text-base-100"  
                             width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" 
                             stroke-linecap="round" stroke-linejoin="round">  

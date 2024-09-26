@@ -1,19 +1,17 @@
 import {React} from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Signin from './Components/Signin/Signin';
-import Dashboard from './Components/Dashboard/Dashboard';
-import Rental from './Components/Rental/Rental';
-import Units from './Components/Units/Units';
-import Search from './Components/Search/Search';
-import Retail from './Components/Retail/Retail';
+import Signin from './Containers/Signin/Signin';
+import Dashboard from './Containers/Dashboard/Dashboard';
+import Rental from './Containers/Rental/Rental';
+import Units from './Containers/Units/Units';
+import Search from './Containers/Search/Search';
+import Retail from './Containers/Retail/Retail';
 import './app.css'
 
 
-function App() {
-
- 
+function App() { 
   return (
-    <div>
+    <div >
       <Routes>
         <Route path="/" element={<Signin />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
