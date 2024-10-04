@@ -3,7 +3,7 @@ import React from "react";
 
 const dashNavItems = [
     {
-        Name: 'Rental',
+        Name: 'New Rental',
         Icon:  
         <svg className="h-8 w-8 text-slate-100"  
         fill="none" 
@@ -32,24 +32,6 @@ const dashNavItems = [
         <line x1="12" y1="22.08" x2="12" y2="12" />
         </svg>,
         Link: 'units',
-    },
-    {
-        Name: 'Search',
-        Icon:
-        <svg className="h-8 w-8 text-slate-100"  
-        width="24" 
-        height="24" 
-        viewBox="0 0 24 24" 
-        strokeWidth="2" 
-        stroke="currentColor" 
-        fill="none" 
-        strokeLinecap="round" 
-        strokeLinejoin="round">  
-        <path stroke="none" d="M0 0h24v24H0z"/>  
-        <circle cx="10" cy="10" r="7" />  
-        <line x1="21" y1="21" x2="15" y2="15" />
-        </svg>,
-        Link: 'search',
     },
     {
         Name: 'Retail',
@@ -85,7 +67,7 @@ const dashNavItems = [
                                         <div className="bg-base-300 text-neutral-content w-36 rounded-full">
                                             {item.Icon}
                                         </div>
-                                        <h1 className="text-white text-4xl font-bold">{item.Name}</h1>
+                                        <h1 className="text-white text-3xl font-bold">{item.Name}</h1>
                                     </div>
                                 </div>
                             </NavLink>

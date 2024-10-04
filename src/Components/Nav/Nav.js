@@ -48,12 +48,6 @@ const Nav = () => {
                     </NavLink>
                  </div>
                  <div>
-                    <NavLink className="flex content-center text-4xl  btn btn-block p-11 pb-16" to="/search" > 
-                    {/* BUTTON TITLE HERE  */}
-                    Search
-                    </NavLink>
-                 </div>
-                 <div>
                     <NavLink className=" flex content-center text-4xl btn btn-block p-11 pb-16" to="/retail" > 
                     {/* BUTTON TITLE HERE  */}
                     Retail

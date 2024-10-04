@@ -1,3 +1,5 @@
+import { readField } from "../../../utils"
+
 const mockInfo = [
 {
     Title: 'Value of Goods',
@@ -19,14 +21,14 @@ const mockInfo = [
 const RentalForm = () => {
 
     return (
-        mockInfo.map((info) => {
+        mockInfo.map((info, index) => {
             return(
-                <div>
+                <div key={index}>
                     <div>
                         <article className="p-10 w-96">
                             <h4 className="text-lg pb-2 font-semibold text-base-100">{info.Title}</h4>
                             <label className="input px-3 input-bordered  flex items-center bg-slate-200 gap-2">
-                                <input type="text" className="text-base-100" placeholder="..." />
+                                <input onChange={readField} type="text" className="text-base-100" placeholder="..." />
                             </label>
                         </article>
                     </div>
