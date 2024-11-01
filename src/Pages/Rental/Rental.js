@@ -10,17 +10,17 @@ import Cart from "../../Components/Cart/Cart";
 
 const Rental = () => {
     return(
-        <div className="bg-white h-screen">
+        <div className="relative bg-white">
             {/* TOP  */}
-            <div className="flex flex-row-reverse">
+            <div className="bg-slate-400 fixed inset-x-0 top-0 z-10 flex flex-row-reverse">
                 <Logout />
                 <Nav />
             </div>
             {/* LEFT  */}
-            <div className="flex space-between">
-                <div className="h-screen overflow-auto container">
-                    <h1 className="flex justify-center text-5xl font-bold pb-5">New Rental</h1>
-                    <div className="flex justify-center pt-5 ">
+            <div className="relative inset-0 pt-10 flex space-between max-lg:flex-wrap h-full">
+                <div className="bg-slate-600 h-screen overflow-y-auto lg:container text-center lg:text-left">
+                        <h1 className="flex justify-center text-5xl font-bold pt-7 pb-5">New Rental</h1>
+                    <div className="flex justify-center pt-5">
                         <div className="justify-center flex flex-wrap p-5 bg-base-200 w-11/12 rounded-2xl">
                             <ContactForm />
                         </div>
@@ -41,11 +41,10 @@ const Rental = () => {
                     </footer>
                 </div>
                 {/* RIGHT  */}
-                <div className="flex justify-center">
+                <div className="flex max-lg:absolute max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-96 flex-start h-screen  bg-slate-300 max-lg:rounded-xl flex-col ll bg-white shadow-xl">
                     <Cart />
                 </div>
             </div>
-          
         </div>
        
     )

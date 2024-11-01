@@ -6,7 +6,7 @@ import Rental from './Pages/Rental/Rental';
 import Units from './Pages/Units/Units';
 import Retail from './Pages/Retail/Retail';
 import './app.css'
-import { readField } from './utils';
+import Account from './Pages/Account/Account';
 
 
 function App() { 
@@ -18,6 +18,7 @@ function App() {
         <Route path="/rental" element={<Rental />}/>
         <Route path="/units" element={<Units />}/>
         <Route path="/retail" element={<Retail />}/>
+        <Route path="/account" element={<Account />}/>
       </Routes>
   </div>
   );

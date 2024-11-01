@@ -22,6 +22,66 @@ const products = [
     imageSrc: '',
     imageAlt: 'Image Here',
   },
+  {
+    id: 2,
+    unit: '1001',
+    href: '#',
+    size: '5x5',
+    type: 'Climate-Controlled',
+    price: '$50.00',
+    imageSrc: '',
+    imageAlt: 'Image Here',
+  },
+  {
+    id: 2,
+    unit: '1001',
+    href: '#',
+    size: '5x5',
+    type: 'Climate-Controlled',
+    price: '$50.00',
+    imageSrc: '',
+    imageAlt: 'Image Here',
+  },
+  {
+    id: 2,
+    unit: '1001',
+    href: '#',
+    size: '5x5',
+    type: 'Climate-Controlled',
+    price: '$50.00',
+    imageSrc: '',
+    imageAlt: 'Image Here',
+  },
+  {
+    id: 2,
+    unit: '1001',
+    href: '#',
+    size: '5x5',
+    type: 'Climate-Controlled',
+    price: '$50.00',
+    imageSrc: '',
+    imageAlt: 'Image Here',
+  },
+  {
+    id: 2,
+    unit: '1001',
+    href: '#',
+    size: '5x5',
+    type: 'Climate-Controlled',
+    price: '$50.00',
+    imageSrc: '',
+    imageAlt: 'Image Here',
+  },
+  {
+    id: 2,
+    unit: '1001',
+    href: '#',
+    size: '5x5',
+    type: 'Climate-Controlled',
+    price: '$50.00',
+    imageSrc: '',
+    imageAlt: 'Image Here',
+  },
   // More products...
 ]
 
@@ -29,11 +89,11 @@ export default function Cart() {
   const [open, setOpen] = useState(true)
 
   return (
-          <div className="pointer-events-none inset-y-0 right-0 flex max-w-full">
-              <div className="flex h-full rounded-l-xl flex-col ll bg-white shadow-xl">
-                <div className="flex-1  px-4 py-6 sm:px-6">
-                  <div className="flex items-start justify-between">
 
+              <div className='max-lg:flex-wrap lg:overflow-auto h-fit'>
+                {/* LIST AREA */}
+                <div className="flex-1 px-4 sm:px-6 max-lg:h-96 max-lg:overflow-auto">
+                  <div className="flex items-start justify-between">
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -47,9 +107,9 @@ export default function Cart() {
                   </div>
                   <div className="mt-8">
                     <div className="flow-root">
-                      <ul role="list" className="-my-6 divide-y divide-gray-200">
+                      <ul role="list" className="max-lg:flex-shrink -my-6 divide-y divide-gray-200">
                         {products.map((product) => (
-                          <li key={product.id} className="flex py-6">
+                          <li key={product.id} className="flex py-12">
                             <div className="h-24 w-24 flex-shrink-0  rounded-md border border-gray-200">
                               <img
                                 alt={product.imageAlt}
@@ -84,8 +144,8 @@ export default function Cart() {
                     </div>
                   </div>
                 </div>
-
-                <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                {/* TOTAL AREA  */}
+                <div className="h-min border-t border-gray-200 bg-slate-700 px-4 py-4 lg:sticky lg:bottom-0 lg:right-0 max-lg:sticky max-lg:inset-x-0 max-lg:bottom-0">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
                     <p>$262.00</p>
@@ -114,7 +174,7 @@ export default function Cart() {
                   </div>
                 </div>
               </div>
-          </div>
+
        
 
   )
