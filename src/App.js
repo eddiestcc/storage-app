@@ -1,38 +1,27 @@
-import {React, useState} from 'react';
+import {React} from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Signin from './Components/Signin/Signin';
-import Dashboard from './Components/Dashboard/Dashboard';
-import Nav from './Components/Nav/Nav';
-import Rental from './Components/Rental/Rental';
-import Units from './Components/Units/Units';
-import Search from './Components/Search/Search';
-import Retail from './Components/Retail/Retail';
-import './CSS/App.css'
+import Signin from './Pages/Signin/Signin';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Rental from './Pages/Rental/Rental';
+import Units from './Pages/Units/Units';
+import Retail from './Pages/Retail/Retail';
+import './app.css'
+import Account from './Pages/Account/Account';
 
 
-function App() {
-
-    return (
-      <>
-        <div className='App'>
-          <div className='wrapper'>
-            <div className='sidebar'>
-                <Nav />
-              </div>
-              <div className='main'>
-                <Routes>
-                  <Route path="/" element={<Signin />}/>
-                  <Route path="/dashboard" element={<Dashboard />}/>
-                  <Route path="/rental" element={<Rental />}/>
-                  <Route path="/units" element={<Units />}/>
-                  <Route path="/search" element={<Search />}/>
-                  <Route path="/retail" element={<Retail />}/>
-                </Routes>
-              </div>
-            </div>
-          </div>
-      </>
-      )
+function App() { 
+  return (
+    <div className='w-full' >
+      <Routes>
+        <Route path="/" element={<Signin />}/>
+        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/rental" element={<Rental />}/>
+        <Route path="/units" element={<Units />}/>
+        <Route path="/retail" element={<Retail />}/>
+        <Route path="/account" element={<Account />}/>
+      </Routes>
+  </div>
+  );
 }
 
 export default App;

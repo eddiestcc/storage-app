@@ -3,53 +3,65 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
     return(
-        <nav className="list pl0">
-            <div>
-                <img className='logo' src={logo} alt='logo'></img>
+        <div className="drawer">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     className="text-base-100 h-5 w-5"
+                     fill="none"
+                     viewBox="0 0 36"
+                     stroke="currentColor">
+                     <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16M4 18h7" />
+                     </svg>
+                  </label>
             </div>
-            <div className="button">
-                <NavLink  to="/dashboard" 
-                className={({ isActive }) => {
-                return isActive ? "no-decoration" : "no-decoration";
-                }}
-                > Dashboard</NavLink>
+            <div className="drawer-side">
+                <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                <ul className="menu bg-base-200 text-base-content min-h-full p-20 rounded-r-2xl">
+                {/* Sidebar content here */} 
+                <div className='flex justify-center'>
+                   <img className="w-36 rounded-full" alt='logo' src={logo}></img>
+                 </div>
+                <div>
+                    <NavLink className="flex content-center text-4xl text-4xl btn btn-block pt-24 p-11 pb-16" to="/dashboard" > 
+                    {/* BUTTON TITLE HERE  */}
+                    Dashboard
+                    </NavLink>
+                 </div>
+                 <div>
+                    <NavLink className="flex content-center text-4xl  btn btn-block p-11 pb-16" to="/rental" > 
+                    {/* BUTTON TITLE HERE  */}
+                    Rental
+                    </NavLink>
+                 </div>
+                 <div>
+                    <NavLink className="flex content-center text-4xl btn btn-block p-11 pb-16" to="/units" > 
+                    {/* BUTTON TITLE HERE  */}
+                    Units
+                    </NavLink>
+                 </div>
+                 <div>
+                    <NavLink className=" flex content-center text-4xl btn btn-block p-11 pb-16" to="/retail" > 
+                    {/* BUTTON TITLE HERE  */}
+                    Retail
+                    </NavLink>
+                 </div>
+                 <div>
+                    <NavLink className="flex content-center text-4xl btn btn-block p-11 pb-16" to="/" > 
+                    {/* BUTTON TITLE HERE  */}
+                    Logout
+                    </NavLink>
+                 </div>
+                </ul>
             </div>
-            <div className="button">
-                <NavLink to="/rental"
-                className={({ isActive }) => {
-                return isActive ? "no-decoration" : "no-decoration";
-                }}
-                >New Rental</NavLink>
-            </div>
-            <div className="button">
-                <NavLink to="/units"
-                className={({ isActive }) => {
-                return isActive ? "no-decoration" : "no-decoration";
-                }}
-                >Units</NavLink>
-            </div>
-            <div className="button">
-                <NavLink to="/search"
-                className={({ isActive }) => {
-                return isActive ? "no-decoration" : "no-decoration";
-                }}
-                >Search</NavLink>
-            </div>
-            <div className="button">
-                <NavLink to="/retail"
-                className={({ isActive }) => {
-                return isActive ? "no-decoration" : "no-decoration";
-                }}
-                >Retail</NavLink>
-            </div>
-            <div className="button">
-                <NavLink to="/"
-                className={({ isActive }) => {
-                return isActive ? "no-decoration" : "no-decoration";
-                }}
-                > Logout</NavLink>
-            </div>
-        </nav>
+        </div>
     )
 }
 
