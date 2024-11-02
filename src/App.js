@@ -8,25 +8,27 @@ import Retail from './Pages/Retail/Retail';
 import './app.css'
 import Account from './Pages/Account/Account';
 import { fakeAuth } from './utils';
-import Nav from './Components/Nav/Nav';
+import Nav from './Pages/Nav/Nav';
 
+function App() {
 
-function App() { 
   const [authToken, setAuthToken] = useState(null);
 
- const signIn = () => {
-    console.log('attempting signin');
-    const token = fakeAuth();
-    setAuthToken(token);
+  const signIn = () => {
+      console.log('attempting signin');
+      const token = fakeAuth();
+      setAuthToken(token);
+    }
+
+  const signOut = () => {
+    setAuthToken(null);
   }
 
-const signOut = () => {
-  setAuthToken(null);
-}
+  console.log(authToken);
 
   return (
     <div className='w-full' >
-    <Nav />
+      <Nav signOut={signOut} />
       <Routes>
         <Route path="/" element={<Signin signIn={signIn} />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
@@ -35,7 +37,7 @@ const signOut = () => {
         <Route path="/retail" element={<Retail />}/>
         <Route path="/account" element={<Account />}/>
       </Routes>
-  </div>
+    </div>
   );
 }
 

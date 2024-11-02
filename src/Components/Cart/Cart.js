@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 
 
 const products = [
@@ -86,8 +86,8 @@ const products = [
 ]
 
 export default function Cart() {
-  const [open, setOpen] = useState(true)
-
+  // const [open, setOpen] = useState(true)
+  
   return (
 
               <div className='max-lg:flex-wrap lg:overflow-auto h-fit'>
@@ -97,17 +97,17 @@ export default function Cart() {
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
-                        onClick={() => setOpen(false)}
+                        // onClick={() => setOpen(false)}
                         className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
                       >
                         <span className="absolute -inset-0.5" />
-                        <span className="sr-only">Close panel</span>
+                        <span className="sr-only ">Close panel</span>
                       </button>
                     </div>
                   </div>
                   <div className="mt-8">
                     <div className="flow-root">
-                      <ul role="list" className="max-lg:flex-shrink -my-6 divide-y divide-gray-200">
+                      <ul  className="max-lg:flex-shrink -my-6 divide-y divide-gray-200">
                         {products.map((product) => (
                           <li key={product.id} className="flex py-12">
                             <div className="h-24 w-24 flex-shrink-0  rounded-md border border-gray-200">
@@ -152,19 +152,18 @@ export default function Cart() {
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                   <div className="mt-6">
-                    <a
-                      href="#"
+                    <button
                       className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                     >
                       Checkout
-                    </a>
+                    </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
                       or{' '}
                       <button
                         type="button"
-                        onClick={() => setOpen(false)}
+                        // onClick={() => setOpen(false)}
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Continue Shopping

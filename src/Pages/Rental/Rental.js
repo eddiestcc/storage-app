@@ -1,6 +1,3 @@
-
-import Nav from "../../Components/Nav/Nav";
-import Logout from "../../Components/Buttons/Logout/Logout";
 import ContactForm from "../../Components/Forms/ContactForm/ContactForm";
 import RentalForm from "../../Components/Forms/RentalForm/RentalForm";
 import GoodsForm from "../../Components/Forms/GoodsForm/GoodsForm";
@@ -11,11 +8,6 @@ import Cart from "../../Components/Cart/Cart";
 const Rental = () => {
     return(
         <div className="relative bg-white">
-            {/* TOP  */}
-            <div className="bg-slate-400 fixed inset-x-0 top-0 z-10 flex flex-row-reverse">
-                <Logout />
-                <Nav />
-            </div>
             {/* LEFT  */}
             <div className="relative inset-0 pt-10 flex space-between max-lg:flex-wrap h-full">
                 <div className="bg-slate-600 h-screen overflow-y-auto lg:container text-center lg:text-left">
