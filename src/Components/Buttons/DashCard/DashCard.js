@@ -57,9 +57,9 @@ const dashNavItems = [
 
     const DashCard = () => {
         return(
-            dashNavItems.map((item) => {
+            dashNavItems.map((item, i) => {
                 return(
-                    <div className='p-5'>
+                    <div key={i} className='p-5'>
                     <div className='grow'>
                             <NavLink to={`/${item.Link}`} className="card bg-base-100 w-96">
                                 <div className="card-body">

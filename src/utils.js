@@ -1,7 +1,7 @@
-import { doc } from "prettier";
-
 export  function readField(event) {
-    console.log(event.target.value);
+    const a = event.target.value;
+    console.log(a);
+    return a;
 }
 
 export  function handleClick(event) {
@@ -22,4 +22,9 @@ export  function enableEditContactForm() {
         element.classList.toggle('bg-base-200')
     }  
 }
+
+export function fakeAuth() {
+    return 'ff73hyu4hw8if348';
+}
+ 
 
