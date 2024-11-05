@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { AuthContext } from "./App";
+
 export  function readField(event) {
     const a = event.target.value;
     console.log(a);
@@ -24,8 +27,7 @@ export  function enableEditContactForm() {
 }
 
 export function fakeAuth() {
-    return 'ff73hyu4hw8if348';
+        return '67ft468486fth';
 }
-
  
 

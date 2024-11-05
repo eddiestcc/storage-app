@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import logo from '../../logo.png'
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../App';
 
 const Nav = ({signOut}) => {
+   
+    const token = useContext(AuthContext);
     return(
       <div id='nav' className='flex'>
          {/* Menu Drawer */}
@@ -65,7 +69,7 @@ const Nav = ({signOut}) => {
             </div>
         </div>
         {/* Sign Out Button */}
-        <span onClick={signOut} className='flex justify-end'>
+        {token && <span onClick={signOut} className='flex justify-end'>
             <NavLink className="btn btn-ghost" to="/" >
                   <svg className="h-8 w-8 text-base-100"  
                   width="24" height="24" viewBox="0 0 24 24"
@@ -78,7 +82,7 @@ const Nav = ({signOut}) => {
                   {/* BUTTON TITLE HERE  */} 
                   <h1 className='font-large text-base-100'>Sign Out</h1>
             </NavLink>
-         </span>
+         </span>}
       </div>
     )
 }
