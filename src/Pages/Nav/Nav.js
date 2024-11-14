@@ -3,9 +3,14 @@ import logo from '../../logo.png'
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../App';
 
-const Nav = ({signOut}) => {
+const Nav = ({setToken}) => {
    
     const token = useContext(AuthContext);
+
+    const signOut = () => {
+      setToken(null);
+    }
+
     return(
       <div id='nav' className='flex'>
          {/* Menu Drawer */}

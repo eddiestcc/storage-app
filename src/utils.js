@@ -1,10 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "./App";
-
-export  function readField(event) {
-    const a = event.target.value;
-    console.log(a);
-    return a;
+export  function readInputField(event) {
+    const inputField = event.target.value;
+    return inputField;
 }
 
 export  function handleClick(event) {
@@ -26,8 +22,23 @@ export  function enableEditContactForm() {
     }  
 }
 
-export function fakeAuth() {
-        return '67ft468486fth';
+export function authenticateSignIn() {
+    // Enter API Call Here
+    const apiUrl = "http://localhost:3001/users"
+    fetch(apiUrl)
+    .then((response) => {
+            if (!response) {
+                throw new Error('Fetch failed');
+            }
+            return response.json();
+    })
+    .then((data) => {
+        console.log(data, 'users')
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
- 
+
 

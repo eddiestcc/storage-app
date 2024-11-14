@@ -1,9 +1,40 @@
-import React from "react";
-import { NavLink } from 'react-router-dom';
-import { readField } from "../../utils";
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { readInputField } from "../../utils";
 
+        const Signin = ({setToken}) => {
 
-        const Signin = ({signIn}) => {
+            const navigate = useNavigate();
+
+            const location = useLocation();
+          
+            const handleSignIn = async () => {
+                    const email = document.getElementById('email-input').value;
+                    const password = document.getElementById('password-input').value;
+                    const url = "http://localhost:3001/signin"
+                    try {
+                        const response = await fetch(url, {
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                method: "POST",
+                                body: JSON.stringify({
+                                    email: email,
+                                    password: password
+                                })
+                            });
+                        if (!response.ok) {
+                            throw new Error(`Response status: ${response.status}`);
+                        }
+                        const apiToken = await response.json()
+                        console.log(apiToken);
+                        setToken(apiToken);
+                        const origin = location.state?.from?.pathname || '/dashboard';
+                        navigate(origin);
+                    } catch (err) {
+                        console.log(err.message);
+                    }
+                }
+
                 return(
                 <div className="hero bg-slate-100 min-h-screen">
                     <div className="hero-content flex-col lg:flex-row-reverse">
@@ -28,7 +59,7 @@ import { readField } from "../../utils";
                                             <path
                                             d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                                         </svg>
-                                        <input onChange={readField} type="text" className="grow" placeholder="Email" />
+                                        <input onChange={readInputField} formMethod="post" type="text" id="email-input" className="grow" placeholder="Email" />
                                     </label>
                                     <label className="input input-bordered flex items-center gap-2">
                                         <svg
@@ -41,10 +72,10 @@ import { readField } from "../../utils";
                                             d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                                             clipRule="evenodd" />
                                         </svg>
-                                        <input onChange={readField}  type="password" className="grow" placeholder="••••••••" />
+                                        <input onChange={readInputField} formMethod="post" type="password" id="password-input" className="grow" placeholder="••••••••" />
                                     </label>
                                     <NavLink 
-                                    onClick={signIn}
+                                    onClick={handleSignIn}
                                     className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"  
                                     to="/dashboard"> 
                                     Sign in
