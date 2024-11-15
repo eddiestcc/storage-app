@@ -8,7 +8,6 @@ import { AuthContext } from "../../App";
                 return(
                     <div>
                         <menu className='h-screen block'>
-                            <h1>Hello, Eddie! This is your token: {token} </h1>
                             <div className="pt-36 pb-36">
                                 <Searchfield />
                             </div>

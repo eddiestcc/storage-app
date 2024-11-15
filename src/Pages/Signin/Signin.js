@@ -25,9 +25,14 @@ import { readInputField } from "../../utils";
                         if (!response.ok) {
                             throw new Error(`Response status: ${response.status}`);
                         }
-                        const apiToken = await response.json()
-                        console.log(apiToken);
-                        setToken(apiToken);
+                        await response.json()
+                        .then((data) => {
+                            if (data === 'error') {
+                                alert('The email or password you entered is incorrect.')
+                            } else {
+                                setToken(data);
+                            }
+                        });
                         const origin = location.state?.from?.pathname || '/dashboard';
                         navigate(origin);
                     } catch (err) {

@@ -16,7 +16,6 @@ function App() {
 
   const [token, setToken] = useState(null);
 
-
   return (
     <AuthContext.Provider value={token}>
       <div className='w-full' >
