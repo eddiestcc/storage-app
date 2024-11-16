@@ -1,7 +1,6 @@
-import { doc } from "prettier";
-
-export  function readField(event) {
-    console.log(event.target.value);
+export  function readInputField(event) {
+    const inputField = event.target.value;
+    return inputField;
 }
 
 export  function handleClick(event) {
@@ -21,5 +20,24 @@ export  function enableEditContactForm() {
         element.classList.toggle('bg-slate-100')
         element.classList.toggle('bg-base-200')
     }  
+}
+
+export function authenticateSignIn() {
+    // Enter API Call Here
+    const apiUrl = "http://localhost:3001/users"
+    fetch(apiUrl)
+    .then((response) => {
+            if (!response) {
+                throw new Error('Fetch failed');
+            }
+            return response.json();
+    })
+    .then((data) => {
+        console.log(data, 'users')
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 

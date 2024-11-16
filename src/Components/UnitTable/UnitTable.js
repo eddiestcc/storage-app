@@ -6,7 +6,7 @@ const UnitTable = () => {
     const [tableList, setTableList] = useState([]);
 
     async function getUsers() {
-      const url = "http://localhost:3001";
+      const url = "http://localhost:3001/units";
       try {
         const response = await fetch(url);
         if (!response.ok) {
