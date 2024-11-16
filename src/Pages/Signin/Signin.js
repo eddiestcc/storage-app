@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { readInputField } from "../../utils";
+import { handleClick, listen, readInputField } from "../../utils";
 
         const Signin = ({setToken}) => {
 
@@ -27,10 +27,10 @@ import { readInputField } from "../../utils";
                         }
                         await response.json()
                         .then((data) => {
-                            if (data === 'error') {
-                                alert('The email or password you entered is incorrect.')
+                            if (data.id) {
+                                setToken(data.first_name);
                             } else {
-                                setToken(data);
+                                alert('The email or password you entered is incorrect.')
                             }
                         });
                         const origin = location.state?.from?.pathname || '/dashboard';
@@ -51,7 +51,12 @@ import { readInputField } from "../../utils";
                         </p>
                         </div>
                         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                            <form className="card-body">
+                            <form 
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter")
+                                    handleSignIn();
+                            }}
+                            className="card-body">
                                 <div className="form-control">
                                     <label className="input input-bordered flex items-center gap-2">
                                         <svg

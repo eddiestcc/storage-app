@@ -74,8 +74,11 @@ const Nav = ({setToken}) => {
             </div>
         </div>
         {/* Sign Out Button */}
-        {token && <span onClick={signOut} className='flex justify-end'>
-        <h1>Hello, user! Token:{token} </h1>
+        {token && 
+        <span onClick={signOut} className='flex justify-end'>
+        <div className='self-center  font-medium'>
+         <p className='w-max'>{`Hello, ${token}`}</p>
+        </div>
             <NavLink className="btn btn-ghost" to="/" >
                   <svg className="h-8 w-8 text-base-100"  
                   width="24" height="24" viewBox="0 0 24 24"
