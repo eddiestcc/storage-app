@@ -1,6 +1,3 @@
-
-import Nav from "../../Components/Nav/Nav";
-import Logout from "../../Components/Buttons/Logout/Logout";
 import CustomerInfoCard from "../../Components/CustomerInfoCard/CustomerInfoCard";
 import Cart from "../../Components/Cart/Cart";
 import TabSection from "../../Components/TabSection/TabSection";
@@ -8,11 +5,6 @@ import TabSection from "../../Components/TabSection/TabSection";
 const Account = () => {
     return(
         <div className="h-screen">
-            {/* TOP  */}
-            <div className="flex flex-row-reverse">
-                <Logout />
-                <Nav />
-            </div>
             {/* LEFT  */}
             <div className="flex space-between">
                 <div className="h-screen overflow-auto container">
