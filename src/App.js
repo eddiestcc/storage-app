@@ -8,7 +8,7 @@ import Retail from './Pages/Retail/Retail';
 import './app.css'
 import Account from './Pages/Account/Account';
 import Nav from './Pages/Nav/Nav';
-import ProtectedRoute from './Pages/ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute';
 
 export const AuthContext = createContext(null);
 
