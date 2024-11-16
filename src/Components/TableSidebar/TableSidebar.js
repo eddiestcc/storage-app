@@ -1,3 +1,4 @@
+import FilterListItem from "../FilterListItem/FilterListItem";
 
 const TableSidebar = () => {
     return (
@@ -15,7 +16,13 @@ const TableSidebar = () => {
                 <ul className="rounded-lg bg-base-100 w-96 text-base-content min-h-full p-10">
                     {/* Sidebar content here */}
                     <div className="flex justify-center pb-5">
-                        <li className="btn btn-outline w-full">Mock</li>
+                        <details className="dropdown">
+                        <summary className="btn btn-outline w-full">Unit Type</summary>
+                        <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
+                            <li><a>Item 1</a></li>
+                            <FilterListItem />
+                        </ul>
+                        </details>
                     </div>
                     <div className="flex justify-center pb-5">
                         <li className="btn btn-outline w-full">Mock</li>

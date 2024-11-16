@@ -1,5 +1,3 @@
-import { doc } from "prettier";
-
 export  function readField(event) {
     console.log(event.target.value);
 }
