@@ -1,14 +1,19 @@
-import CustomerInfoCard from "../../Components/CustomerInfoCard/CustomerInfoCard";
 import Cart from "../../Components/Cart/Cart";
 import TabSection from "../../Components/TabSection/TabSection";
+import AccountInfoCard from "../../Components/AccountInfoCard/AccountInfoCard";
+import { useEffect, useState } from "react";
 
 const Account = () => {
+
+    const [userData, setUserData] = useState(null);
+    
+
     return(
         <div className="h-screen">
             {/* LEFT  */}
             <div className="flex space-between">
                 <div className="h-screen overflow-auto container">
-                   <CustomerInfoCard />
+                   <AccountInfoCard />
                    <TabSection />
                 </div>
                  {/* RIGHT  */}

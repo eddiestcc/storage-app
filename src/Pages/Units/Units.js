@@ -5,6 +5,7 @@ import FilterListItem from "../../Components/FilterListItem/FilterListItem";
 const Units = () => {
 
     const [tableList, setTableList] = useState([]);
+    const [displayTable, setDisplayTable] = useState([]);
 
     async function getUsers() {
       const url = "http://localhost:3001/units";
@@ -22,12 +23,13 @@ const Units = () => {
 
     useEffect(() => {
       getUsers()
-      .then((data) => setTableList(data))
+      .then(data => setTableList(data))
   }, []);
 
-    return(
+
+return(
         <div className="h-screen">
-            {/* LEFT  */}
+            {/* LEFT SIDE */}
             <div className="flex space-between">
                 <div className="h-screen overflow-auto container">
                     <div className="rounded-xl overflow-x-auto">
@@ -40,34 +42,54 @@ const Units = () => {
                                 <th>Unit Type</th>
                                 <th>Paid Thru Date</th>
                                 <th>Rental Start Date</th>
+                                <th>Status</th>
                                 </tr>
                             </thead>
                             {tableList.map((info, index) => {
-                            console.log(info, 'info')
+                                
+                            const { id, unit_number, unit_type, unit_status, paid_thru_date, account_name, rental_start_date } = info;
+
+                            const timeStampStartDate = Date.parse(rental_start_date);
+                            const startDate = new Date (timeStampStartDate);
+                            const formattedStartDate = startDate.toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "numeric",
+                                day: "numeric"
+                            })
+
+                            const timeStampThruDate = Date.parse(paid_thru_date);
+                            const thruDate = new Date (timeStampThruDate);
+                            const formattedThruDate = thruDate.toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "numeric",
+                                day: "numeric"
+                            })
+
                             return(
                                     <tbody 
                                     key={index} 
-                                    className="bg-white text-base-100 text-xl hover:bg-base-100  hover:text-slate-100 ">
+                                    className="bg-white text-base-100 text-xl hover:bg-base-100 hover:text-slate-100">
                                         {/* row 1 */}
                                         <th>
                                         <NavLink
-                                        to={`/account`}
+                                        // This will be an account number that is unique later on 
+                                        to={`/account/${id}`}
                                         className="cursor-pointer btn btn-outline"
-                                        >{info.unit} 
+                                        >{unit_number} 
                                         </NavLink>
                                         </th>
-                                        <td>{info.accountName}</td>
-                                        <td>{info.unitType}</td>
-                                        <td>{info.paidThruDate}</td>
-                                        <td>{info.rentalStartDate}</td>
-                                    
+                                        <td >{account_name}</td>
+                                        <td>{unit_type}</td>
+                                        <td>{formattedThruDate}</td>
+                                        <td>{formattedStartDate}</td>
+                                        <td>{unit_status}</td>
                                     </tbody>
                                 )}
                             )}
                         </table>
                     </div>
                 </div>
-                {/* RIGHT  */}
+                {/* RIGHT SIDE */}
                 <div className="flex justify-center">
                     <div className="drawer lg:drawer-open">
                         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -87,7 +109,7 @@ const Units = () => {
                                     <summary className="btn btn-outline w-full">Unit Type</summary>
                                     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
                                         <li>Item 1</li>
-                                        <FilterListItem />
+                                        <FilterListItem displayTable={displayTable} setDisplayTable={setDisplayTable} />
                                     </ul>
                                     </details>
                                 </div>
