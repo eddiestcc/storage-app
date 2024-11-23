@@ -1,7 +1,7 @@
 const Ledger = () => {
     return (
         <div className="flex justify-center bg-slate-200">
-                <div className="overflow-x-auto w-full">
+            <article className="overflow-x-auto w-full">
                 <table className="table h-80">
                     {/* head */}
                     <thead>
@@ -15,28 +15,28 @@ const Ledger = () => {
                     <tbody>
                     {/* row 1 */}
                     <tr>
-                        <th>11/12/2040</th>
+                        <td>11/12/2040</td>
                         <td>Invoice</td>
                         <td>$298.10</td>
                         <td>$298.10</td>
                     </tr>
                     {/* row 2 */}
                     <tr>
-                        <th>11/12/2040</th>
+                        <td>11/12/2040</td>
                         <td>Invoice</td>
                         <td>$298.10</td>
                         <td>$298.10</td>
                     </tr>
                     {/* row 3 */}
                     <tr>
-                        <th>11/12/2040</th>
+                        <td>11/12/2040</td>
                         <td>Invoice</td>
                         <td>$298.10</td>
                         <td>$298.10</td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
+            </article>
         </div>
     )
 }

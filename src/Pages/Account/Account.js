@@ -2,18 +2,44 @@ import Cart from "../../Components/Cart/Cart";
 import TabSection from "../../Components/TabSection/TabSection";
 import AccountInfoCard from "../../Components/AccountInfoCard/AccountInfoCard";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Account = () => {
 
     const [userData, setUserData] = useState(null);
+    const { userID } = useParams();
     
+    async function getUserData() {
+        try {
+          const url = `http://localhost:3001/accounts/${userID}`;
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+          await response.json()
+          .then(response => {
+            setUserData(response);
+          });
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
 
-    return(
+      useEffect(() => {
+        getUserData();
+      }, [])
+    if (!userData) {
+      return(
+        <h1>Loading...</h1>
+      )
+      
+    } else {
+      return(
         <div className="h-screen">
             {/* LEFT  */}
             <div className="flex space-between">
                 <div className="h-screen overflow-auto container">
-                   <AccountInfoCard />
+                   <AccountInfoCard userData={userData}/>
                    <TabSection />
                 </div>
                  {/* RIGHT  */}
@@ -21,10 +47,9 @@ const Account = () => {
                     <Cart />
                 </div>
             </div>
-          
         </div>
-       
-    )
+      )
+    }  
 }
 
 export default Account;

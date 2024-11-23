@@ -1,7 +1,7 @@
 const Notes = () => {
     return (
         <div className="flex justify-center bg-slate-200">
-            <div className="overflow-x-auto w-full">
+            <article className="overflow-x-auto w-full">
                 <table className="table h-80">
                     {/* head */}
                     <thead>
@@ -14,25 +14,25 @@ const Notes = () => {
                     <tbody>
                     {/* row 1 */}
                     <tr>
-                        <th>High</th>
+                        <td>High</td>
                         <td>Warning</td>
                         <td>Note Example</td>
                     </tr>
                     {/* row 2 */}
                     <tr>
-                        <th>low</th>
+                        <td>low</td>
                         <td>General</td>
                         <td>Example Written Here</td>
                     </tr>
                     {/* row 3 */}
                     <tr>
-                        <th>low</th>
+                        <td>low</td>
                         <td>Maintenance</td>
                         <td>Details Here</td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
+            </article>
         </div>
     )
 }

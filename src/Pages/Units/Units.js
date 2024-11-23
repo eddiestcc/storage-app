@@ -70,19 +70,21 @@ return(
                                     key={index} 
                                     className="bg-white text-base-100 text-xl hover:bg-base-100 hover:text-slate-100">
                                         {/* row 1 */}
-                                        <th>
-                                        <NavLink
-                                        // This will be an account number that is unique later on 
-                                        to={`/account/${id}`}
-                                        className="cursor-pointer btn btn-outline"
-                                        >{unit_number} 
-                                        </NavLink>
-                                        </th>
-                                        <td >{account_name}</td>
-                                        <td>{unit_type}</td>
-                                        <td>{formattedThruDate}</td>
-                                        <td>{formattedStartDate}</td>
-                                        <td>{unit_status}</td>
+                                        <tr>
+                                            <td>
+                                            <NavLink
+                                            // This is the account number
+                                            to={`/account/${id}`}
+                                            className="cursor-pointer btn btn-outline"
+                                            >{unit_number} 
+                                            </NavLink>
+                                            </td>
+                                            <td >{account_name}</td>
+                                            <td>{unit_type}</td>
+                                            <td>{formattedThruDate}</td>
+                                            <td>{formattedStartDate}</td>
+                                            <td>{unit_status}</td>
+                                        </tr>
                                     </tbody>
                                 )}
                             )}

@@ -26,7 +26,7 @@ function App() {
             <Route path="/rental" element={<ProtectedRoute><Rental /></ProtectedRoute>}/>
             <Route path="/units" element={<ProtectedRoute><Units /></ProtectedRoute>}/>
             <Route path="/retail" element={<ProtectedRoute><Retail /></ProtectedRoute>}/>
-            <Route path={`/account/:userID`} element={<ProtectedRoute><Account /></ProtectedRoute>}/>
+            <Route path="/account/:userID" element={<ProtectedRoute><Account /></ProtectedRoute>}/>
         </Routes>
       </div>
     </AuthContext.Provider>
