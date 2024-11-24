@@ -30,9 +30,16 @@ const Account = () => {
       }, [])
     if (!userData) {
       return(
-        <h1>Loading...</h1>
+          <div className="h-screen w-screen flex justify-center">
+              <div className="flex">
+                  <div className="container">
+                    <span className="h-screen loading loading-ring loading-lg"></span>
+                    <span className="h-screen loading loading-ring loading-lg"></span>
+                    <span className="h-screen loading loading-ring loading-lg"></span>
+                  </div>
+              </div>
+           </div>
       )
-      
     } else {
       return(
         <div className="h-screen">
