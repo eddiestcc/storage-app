@@ -29,16 +29,28 @@ const Account = () => {
         getUserData();
       }, [])
     if (!userData) {
+      // LOADING PAGE 
       return(
-          <div className="h-screen w-screen flex justify-center">
-              <div className="flex">
-                  <div className="container">
-                    <span className="h-screen loading loading-ring loading-lg"></span>
-                    <span className="h-screen loading loading-ring loading-lg"></span>
-                    <span className="h-screen loading loading-ring loading-lg"></span>
+        <div className="h-screen">
+            {/* LEFT  */}
+            <div className="flex space-between">
+                <div className="h-screen overflow-auto container">
+                   {/* <AccountInfoCard userData={userData}/> */}
+                  <div className="container w-screen h-screen flex justify-center items-center pb-72 flex-col bg-base-100">
+                    <div className="pb-6">
+                      <h1 className="font-bold text-2xl text-slate-100">Please wait.</h1>
+                    </div>
+                    <div>
+                      <span className="loading loading-ring loading-lg"></span>
+                    </div>
                   </div>
-              </div>
-           </div>
+                </div>
+                 {/* RIGHT  */}
+                 <div className="flex max-lg:absolute max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-96 flex-start h-screen  bg-slate-300 max-lg:rounded-xl flex-col ll bg-white shadow-xl">
+                    <Cart />
+                </div>
+            </div>
+        </div>
       )
     } else {
       return(
