@@ -7,9 +7,9 @@ const Units = () => {
 
     const [tableList, setTableList] = useState([]);
 
-    const [loading, setLoading] = useState(null);
+    const [visibleTable , setVisibleTable] = useState([])
 
-    const checkLoad = (line) => {console.log(`loading status: ${loading}`, line) } 
+    const [loading, setLoading] = useState(null);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -26,35 +26,77 @@ const Units = () => {
               console.error(error.message);
             } finally {
             setLoading(false);
-            checkLoad('27');
             }
           };
         getUsers()
-        .then(data => setTableList(data));
+        .then(data => {
+            setTableList(data);
+            setVisibleTable(data);
+        });
   }, []);
+
+  const toggleDrawer = () => {
+    const filter = document.getElementsByClassName('filter');
+    filter[0].classList.toggle('hidden');
+  }
 
 if (loading) {
     // LOADING SCREEN 
     return(
         <div className="h-screen">
-        {/* LEFT SIDE */}
-        <div className="flex space-between">
-            <div className="h-screen overflow-auto container">
-                <div className="rounded-xl overflow-x-auto">
-                    <div className="table container">
-                        {/* head */}
-                        <div className="text-2xl text-slate-100 bg-base-100">
-                            <tr className="flex flex-row  w-max">
-                            <th>Unit Number</th>
-                            <th>Account Name</th>
-                            <th>Unit Type</th>
-                            <th>Paid Thru Date</th>
-                            <th>Rental Start Date</th>
-                            <th>Status</th>
-                            </tr>
+        {/* container for unit list and sidebar  */}
+        <div className="flex flex-col">
+                {/* TOP SIDE */}
+                <div className="flex flex-col">
+                    <button className="btn text-white text-2xl filter-btn">Filter</button>
+                    <div className="filter h-min w-screen hidden">
+                        <div className="flex justify-evenly rounded-lg bg-slate-700 text-base-content min-h-full p-5">
+                            {/* Sidebar content here */}
+                            <div>
+                                <details className="dropdown">
+                                <summary className="btn btn-wide btn-outline">Unit Type</summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
+                                    <FilterListItem  />
+                                </ul>
+                                </details>
+                            </div>
+                            <div>
+                                <details className="dropdown">
+                                <summary className="btn btn-outline btn-wide">Unit Type</summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
+                                    <FilterListItem  />
+                                </ul>
+                                </details>
+                            </div>
+                            <div>
+                                <details className="dropdown">
+                                <summary className="btn btn-outline btn-wide">Unit Type</summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
+                                    <FilterListItem  />
+                                </ul>
+                                </details>
+                            </div>
                         </div>
+                    </div>
+                </div>
+                 {/* BOTTOM SIDE */}
+                <div className="h-screen w-screen overflow-auto">
+                    <div className="rounded-xl overflow-x-max">
+                        <table className="table">
+                            {/* head */}
+                            <thead className="text-2xl text-slate-100 bg-base-100 sticky top-0">
+                                <tr>
+                                <th>Unit Number</th>
+                                <th>Account Name</th>
+                                <th>Unit Type</th>
+                                <th>Paid Thru Date</th>
+                                <th>Rental Start Date</th>
+                                <th>Status</th>
+                                </tr>
+                            </thead>
+                        </table>
                         {/* Loading Area  */}
-                        <div className="container  h-screen flex justify-center items-center flex-col pb-72">
+                        <div className="h-screen flex justify-center items-center flex-col pb-72">
                             <div className="pb-4">
                                 <h1 className="text-2xl text-slate-500  font-bold">Please wait.</h1>
                             </div>
@@ -66,60 +108,38 @@ if (loading) {
                     </div>
                 </div>
             </div>
-            {/* RIGHT SIDE */}
-            <div className="flex justify-center">
-                <div className="drawer lg:drawer-open">
-                    <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                    <div className="drawer-content flex flex-col items-center justify-center">
-                        {/* Page content here */}
-                        <label htmlFor="my-drawer-2" className="flex btn btn-primary drawer-button lg:hidden">
-                            Filters
-                        </label>
-                    </div>
-                    <div className="drawer-side">
-                        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                        <button className="btn text-white text-2xl w-96">Filter</button>
-                        <ul className="rounded-lg bg-base-100 w-96 text-base-content min-h-full p-10">
-                            {/* Sidebar content here */}
-                            <div className="flex justify-center pb-5">
-                                <details className="dropdown">
-                                <summary className="btn btn-outline w-full">Unit Type</summary>
-                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
-                                    <li>Item 1</li>
-                                    <FilterListItem  />
-                                </ul>
-                                </details>
-                            </div>
-                            <div className="flex justify-center pb-5">
-                                <li className="btn btn-outline w-full">Mock</li>
-                            </div>
-                            <div className="flex justify-center pb-5">
-                                <li className="btn btn-outline w-full">Mock</li>
-                            </div>
-                            <div className="flex justify-center pb-5">
-                                <li className="btn btn-outline w-full">Mock</li>
-                            </div>
-                            <div className="flex justify-center pb-5">
-                                <li className="btn btn-outline w-full">Mock</li>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
     )
     
 } else {
 return(
         <div className="h-screen">
-            {/* LEFT SIDE */}
-            <div className="flex space-between">
-                <div className="h-screen overflow-auto container">
-                    <div className="rounded-xl overflow-x-auto">
+            {/* container for unit list and sidebar  */}
+            <div className="flex flex-col">
+                 {/* FILTER MENU */}
+                <div className="flex flex-col">
+                    <button onClick={toggleDrawer} className="btn text-white text-2xl filter-btn">Filter</button>
+                    <div className="filter h-min w-screen hidden">
+                        <div className="rounded-lg bg-slate-700 text-base-content min-h-full p-5">
+                            {/* Filter content here */}
+                            {/* <div>
+                                <details className="dropdown">
+                                <summary className="btn btn-wide btn-outline">Unit Type</summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
+                                    <FilterListItem tableList={tableList} setVisibleTable={setVisibleTable} />
+                                </ul>
+                                </details>
+                            </div> */}
+                            <FilterListItem tableList={tableList} setVisibleTable={setVisibleTable} />
+                        </div>
+                    </div>
+                </div>
+                 {/* TABLE */}
+                <div className="h-screen w-screen overflow-auto">
+                    <div className="rounded-xl overflow-x-max">
                         <table className="table">
                             {/* head */}
-                            <thead className="text-2xl text-slate-100 bg-base-100">
+                            <thead className="text-2xl text-slate-100 bg-base-100 sticky top-0">
                                 <tr>
                                 <th>Unit Number</th>
                                 <th>Account Name</th>
@@ -129,10 +149,11 @@ return(
                                 <th>Status</th>
                                 </tr>
                             </thead>
-                           
-                            {tableList.map((info, index) => {
+                            {visibleTable.map((info, index) => {
 
-                                const { id, unit_number, unit_type, unit_status, paid_thru_date, account_name, rental_start_date } = info;
+                                const { id, unit_number, unit_type, paid_thru_date, account_name, rental_start_date } = info;
+                                let { unit_status } = info;
+                                let buttonClass = '';
 
                                 const timeStampStartDate = Date.parse(rental_start_date);
                                 const startDate = new Date (timeStampStartDate);
@@ -149,6 +170,35 @@ return(
                                     month: "numeric",
                                     day: "numeric"
                                 })
+
+                                const findDelinquentStatus = () => {
+                                    {/* Todays date  */}
+                                    const date = new Date;
+                                    const getToday = date.getTime()
+                                    const today = new Date(getToday).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "numeric",
+                                    day: "numeric"
+                                })
+                                    {/* Paid Thru Date  */}
+                                    const paidThruDate = formattedThruDate;
+
+                                    const pastDue = paidThruDate < today;
+                                    const current = paidThruDate >= today; 
+                                    
+
+                                    if (pastDue) {
+                                        unit_status = 'Past Due'
+                                        buttonClass = 'flex btn btn-error no-animation cursor-default'
+                                        return unit_status;
+                                    } else {
+                                        unit_status = 'Current';
+                                        buttonClass = 'flex btn btn-success no-animation cursor-default'
+                                        return unit_status;
+                                    }
+                                }
+
+                                findDelinquentStatus();
 
                                 return(
                                         <tbody 
@@ -168,53 +218,15 @@ return(
                                                 <td>{unit_type}</td>
                                                 <td>{formattedThruDate}</td>
                                                 <td>{formattedStartDate}</td>
-                                                <td>{unit_status}</td>
+                                                <td>
+                                                    <p className={buttonClass}>{unit_status}</p>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     )
                                 }      
                             )}
                         </table>
-                    </div>
-                </div>
-                {/* RIGHT SIDE */}
-                <div className="flex justify-center">
-                    <div className="drawer lg:drawer-open">
-                        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                        <div className="drawer-content flex flex-col items-center justify-center">
-                            {/* Page content here */}
-                            <label htmlFor="my-drawer-2" className="flex btn btn-primary drawer-button lg:hidden">
-                                Filters
-                            </label>
-                        </div>
-                        <div className="drawer-side">
-                            <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                            <button className="btn text-white text-2xl w-96">Filter</button>
-                            <ul className="rounded-lg bg-base-100 w-96 text-base-content min-h-full p-10">
-                                {/* Sidebar content here */}
-                                <div className="flex justify-center pb-5">
-                                    <details className="dropdown">
-                                    <summary className="btn btn-outline w-full">Unit Type</summary>
-                                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
-                                        <li>Item 1</li>
-                                        <FilterListItem  />
-                                    </ul>
-                                    </details>
-                                </div>
-                                <div className="flex justify-center pb-5">
-                                    <li className="btn btn-outline w-full">Mock</li>
-                                </div>
-                                <div className="flex justify-center pb-5">
-                                    <li className="btn btn-outline w-full">Mock</li>
-                                </div>
-                                <div className="flex justify-center pb-5">
-                                    <li className="btn btn-outline w-full">Mock</li>
-                                </div>
-                                <div className="flex justify-center pb-5">
-                                    <li className="btn btn-outline w-full">Mock</li>
-                                </div>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
