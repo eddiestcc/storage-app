@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import logo from '../../logo.png'
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../App';
+import { toggleMenu } from '../../utils';
 
 const Nav = ({setToken}) => {
    
@@ -41,7 +42,7 @@ const Nav = ({setToken}) => {
                    <img className="w-36 rounded-full" alt='logo' src={logo}></img>
                  </div>
                 <div>
-                    <NavLink className="flex content-center text-4xl text-4xl btn btn-block pt-24 p-11 pb-16" to="/dashboard" > 
+                    <NavLink  className="flex content-center text-4xl text-4xl btn btn-block pt-24 p-11 pb-16" to="/dashboard" > 
                     {/* BUTTON TITLE HERE  */}
                     Dashboard
                     </NavLink>
