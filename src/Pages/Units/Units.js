@@ -146,6 +146,10 @@ return(
                                 const { id, unit_number, unit_type, paid_thru_date, account_name, rental_start_date } = info;
                                 let { unit_status } = info;
                                 let buttonClass = '';
+                                let paidThruDate = '';
+                                let rentalStartDate ='';
+
+                               
 
                                 const timeStampStartDate = Date.parse(rental_start_date);
                                 const startDate = new Date (timeStampStartDate);
@@ -173,13 +177,21 @@ return(
                                     day: "numeric"
                                 })
                                     {/* Paid Thru Date  */}
-                                    const paidThruDate = formattedThruDate;
 
-                                    const pastDue = paidThruDate < today;
-                                    const current = paidThruDate >= today; 
-                                    
+                                    const pastDue = formattedThruDate < today;
+                                    const current = formattedThruDate >= today; 
+                                    paidThruDate = formattedThruDate;
+                                    rentalStartDate = formattedStartDate;
 
-                                    if (pastDue) {
+                                    console.log(unit_number)
+
+                                    if (formattedThruDate === 'Invalid Date' && account_name === null){
+                                        paidThruDate = null;
+                                        rentalStartDate = null;
+                                        unit_status = 'Available';
+                                        buttonClass = 'flex btn btn-warning no-animation cursor-default'
+                                        return unit_status;
+                                    } else if (pastDue) {
                                         unit_status = 'Past Due'
                                         buttonClass = 'flex btn btn-error no-animation cursor-default'
                                         return unit_status;
@@ -191,31 +203,55 @@ return(
                                 }
 
                                 findDelinquentStatus();
+                                if (id) {
+                                    return(
+                                            <tbody 
+                                            key={index} 
+                                            className="bg-white text-base-100 text-xl hover:bg-base-100 hover:text-slate-100">
+                                                {/* rows */}
+                                                <tr>
+                                                    <td>
+                                                    <NavLink
+                                                    // This is the account number
+                                                    to={`/account/${id}`}
+                                                    className="cursor-pointer btn-link btn btn-outline"
+                                                    >{unit_number} 
+                                                    </NavLink>
+                                                    </td>
+                                                    <td>{account_name}</td>
+                                                    <td>{unit_type}</td>
+                                                    <td>{paidThruDate}</td>
+                                                    <td>{rentalStartDate}</td>
+                                                    <td>
+                                                        <p className={buttonClass}>{unit_status}</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        )
+                                    } else {
+                                        return(
+                                            <tbody 
+                                            key={index} 
+                                            className="bg-white text-base-100 text-xl hover:bg-base-100 hover:text-slate-100">
+                                                {/* rows */}
+                                                <tr>
+                                                    <td>
+                                                        <div className="cursor-default btn btn-outline">
+                                                            {unit_number} 
+                                                        </div>
+                                                    </td>
+                                                    <td>{account_name}</td>
+                                                    <td>{unit_type}</td>
+                                                    <td>{paidThruDate}</td>
+                                                    <td>{rentalStartDate}</td>
+                                                    <td>
+                                                        <p className={buttonClass}>{unit_status}</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        )
 
-                                return(
-                                        <tbody 
-                                        key={index} 
-                                        className="bg-white text-base-100 text-xl hover:bg-base-100 hover:text-slate-100">
-                                            {/* rows */}
-                                            <tr>
-                                                <td>
-                                                <NavLink
-                                                // This is the account number
-                                                to={`/account/${id}`}
-                                                className="cursor-pointer btn btn-outline"
-                                                >{unit_number} 
-                                                </NavLink>
-                                                </td>
-                                                <td>{account_name}</td>
-                                                <td>{unit_type}</td>
-                                                <td>{formattedThruDate}</td>
-                                                <td>{formattedStartDate}</td>
-                                                <td>
-                                                    <p className={buttonClass}>{unit_status}</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    )
+                                    }
                                 }      
                             )}
                         </table>
