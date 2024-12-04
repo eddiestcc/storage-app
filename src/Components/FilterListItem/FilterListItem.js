@@ -57,19 +57,7 @@ const FilterListItem = ({ tableList, setVisibleTable }) => {
                         <summary className="btn btn-wide btn-outline">{menuTitle}</summary>
                         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
                             <div>
-                                    {/* <div className="p-5 w-min">
-                                        <li onClick={filterUnitType} className="filter-name btn btn-outline w-48 overflow-hidden">{}</li>
-                                    </div>     */}
-                                
-                                    {subTitleList.map((menuName, i) => {
-                                        return(
-                                            <div className="p-5 w-min">
-                                             <li onClick={filterUnitType}  className="filter-name btn btn-outline w-48 overflow-hidden">{menuName.subTitle}</li>
-                                            </div>     
-                                        )
-                                    })}  
-                                    {/* <FilterListSubItem filterUnitType={filterUnitType} subTitleList={subTitleList}/> */}
-                               
+                                {/* <FilterListSubItem filterUnitType={filterUnitType} subTitleList={subTitleList}/> */}
                             </div>
                         </ul>
                     </details>
