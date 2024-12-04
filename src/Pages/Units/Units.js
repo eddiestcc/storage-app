@@ -183,8 +183,6 @@ return(
                                     paidThruDate = formattedThruDate;
                                     rentalStartDate = formattedStartDate;
 
-                                    console.log(unit_number)
-
                                     if (formattedThruDate === 'Invalid Date' && account_name === null){
                                         paidThruDate = null;
                                         rentalStartDate = null;
