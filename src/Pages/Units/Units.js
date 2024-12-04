@@ -118,18 +118,10 @@ return(
             <div className="flex flex-col">
                  {/* FILTER MENU */}
                 <div className="flex flex-col">
-                    <button onClick={toggleDrawer} className="btn text-white text-2xl filter-btn">Filter</button>
+                    <button onClick={toggleDrawer} className="btn btn-ghost text-base-100 text-2xl filter-btn">Filter</button>
                     <div className="filter h-min w-screen hidden">
-                        <div className="rounded-lg bg-slate-700 text-base-content min-h-full p-5">
+                        <div className="bg-base-100 text-base-content min-h-full p-5">
                             {/* Filter content here */}
-                            {/* <div>
-                                <details className="dropdown">
-                                <summary className="btn btn-wide btn-outline">Unit Type</summary>
-                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
-                                    <FilterListItem tableList={tableList} setVisibleTable={setVisibleTable} />
-                                </ul>
-                                </details>
-                            </div> */}
                             <FilterListItem tableList={tableList} setVisibleTable={setVisibleTable} />
                         </div>
                     </div>

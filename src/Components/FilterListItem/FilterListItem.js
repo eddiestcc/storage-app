@@ -1,18 +1,25 @@
+import FilterListSubItem from "../FilterListSubItem";
 
 const FilterListItem = ({ tableList, setVisibleTable }) => {
 
     const filterMenu = [
         {
-            menuList: ['Unit Type'],
-            subMenuLists: ['FCC', 'ECC', 'Clear']
+            menuList:{
+                title: ['Unit Type'],
+                subTitle: ['FCC', 'ECC', 'Clear']
+            } 
         },
         {
-            menuList: ['Delinquency Status'],
-            subMenuLists: ['Current', 'Past Due', 'Clear']
+            menuList:{
+                title: ['Delinquency Status'],
+                subTitle: ['Current', 'Past Due', 'Clear']
+            } 
         },
         {
-            menuList: ['Sort By'],
-            subMenuLists: ['Unit Number', 'Account Name', 'Paid Thru Date', 'Clear']
+            menuList:{
+                title: ['Sort By'],
+                subTitle: ['Unit Number', 'Account Name', 'Paid Thru Date', 'Clear']
+            } 
         }
     ]
     
@@ -36,26 +43,33 @@ const FilterListItem = ({ tableList, setVisibleTable }) => {
         }
     }
 
+    const tileList = filterMenu.map(item => {return item.menuList})
+    const subTitleList = filterMenu.map(item => {return item.menuList})
+
+
     return (
         <div className="flex flex-wrap justify-evenly">
-        {/* {   I left off here. What I need to do is figure out a way to iterate over filtermenu */}
-        {/* so that i can autoname all buttons  */}
-            {
-                filterMenu.forEach((menuName, i) => {
-                console.log(menuName.menuList, i)
-                return (
-                <div>
+            {filterMenu.map((menuName, i) => {
+                let menuTitle = menuName.menuList.title;
+                return(
+                    <div key={i}>
                     <details className="dropdown">
-                        <summary className="btn btn-wide btn-outline">{menuName}</summary>
+                        <summary className="btn btn-wide btn-outline">{menuTitle}</summary>
                         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
                             <div>
-                                {filterMenu[0].subMenuLists.map((button) => {
-                                    return (
-                                        <div className="p-5 w-min">
-                                            <li onClick={filterUnitType} className="filter-name btn btn-outline w-48 overflow-hidden">{button}</li>
-                                        </div>
-                                    )
-                                })}
+                                    {/* <div className="p-5 w-min">
+                                        <li onClick={filterUnitType} className="filter-name btn btn-outline w-48 overflow-hidden">{}</li>
+                                    </div>     */}
+                                
+                                    {subTitleList.map((menuName, i) => {
+                                        return(
+                                            <div className="p-5 w-min">
+                                             <li onClick={filterUnitType}  className="filter-name btn btn-outline w-48 overflow-hidden">{menuName.subTitle}</li>
+                                            </div>     
+                                        )
+                                    })}  
+                                    {/* <FilterListSubItem filterUnitType={filterUnitType} subTitleList={subTitleList}/> */}
+                               
                             </div>
                         </ul>
                     </details>
@@ -64,31 +78,6 @@ const FilterListItem = ({ tableList, setVisibleTable }) => {
             })}
         </div>
     )
-
-    // return (
-    //     <div className="flex flex-wrap justify-evenly">
-    //         {filterMenu[0].menuList.map((menuName) => {
-    //             return (
-    //             <div>
-    //                 <details className="dropdown">
-    //                     <summary className="btn btn-wide btn-outline">{menuName}</summary>
-    //                     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow">
-    //                         <div>
-    //                             {filterMenu[0].subMenuLists.map((button) => {
-    //                                 return (
-    //                                     <div className="p-5 w-min">
-    //                                         <li onClick={filterUnitType} className="filter-name btn btn-outline w-48 overflow-hidden">{button}</li>
-    //                                     </div>
-    //                                 )
-    //                             })}
-    //                         </div>
-    //                     </ul>
-    //                 </details>
-    //             </div>
-    //             )
-    //         })}
-    //     </div>
-    // )
 }
 
 export default FilterListItem;
