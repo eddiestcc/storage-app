@@ -1,4 +1,4 @@
-import { readInputField } from "../../utils"
+import { returnInputField } from "../../utils"
 
 const mockInfo = [
     'First Name',
@@ -27,7 +27,7 @@ const CustomerInfoCard = () => {
                                 <div className="w-72 contact-form-div">
                                     <h4 className="text-lg pb-2 font-semibold text-slate-100">{info}</h4>
                                     <label className="input px-3 flex items-center bg-slate-100 gap-2 contact-form-field">
-                                        <input onChange={readInputField} type="text" className="text-base-300 " placeholder="..." />
+                                        <input onChange={returnInputField} type="text" className="text-base-300 " placeholder="..." />
                                     </label>
                                 </div>
                             </article>
