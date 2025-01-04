@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { returnInputField } from "../../../utils"
 
 
@@ -20,28 +20,10 @@ const formFields = [
     'ZIP',
 ]
 
-const ContactForm = () => {
+const ContactForm = ({ setFormData }) => {
 
     const contactField = document.getElementsByClassName("contact-form-field");
     const contactButton = document.getElementsByClassName("contact-form-button");
-
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        primaryPhone: '',
-        secondaryPhone: '',
-        email: '',
-        licenseNumber: '',
-        licenseExpiration: '',
-        licenseState: '',
-        street: '',
-        unit: '',
-        city: '',
-        state: '',
-        zip: '',
-    })
-
 
     function setContactForm() {
         contactButton[0].children[0].classList.toggle('hidden');
@@ -55,13 +37,19 @@ const ContactForm = () => {
             input.classList.toggle('bg-base-200')
         }
     }
+
    
     const getInput = () => {
         const array = [];
         for (let i = 0; i < contactField.length; i++) {
             const currentInput = contactField[i];
+            const currentFieldTitle = contactField[i].parentElement.textContent;
             const currentText = currentInput.firstChild.value;
-            array.push(currentText)           
+            // Check to see if field is empty and if so, send an error. 
+            if (currentText.length < 1) {
+                // console.error(`${currentFieldTitle} cannot be left blank.`)
+            } 
+            array.push(currentText)       
         }
        setFormData({
         firstName: array[0],
@@ -74,20 +62,13 @@ const ContactForm = () => {
         licenseExpiration: array[7],
         licenseState: array[8],
         street: array[9],
-        unit: array[10],
+        apartment: array[10],
         city: array[11],
         state: array[12],
         zip: array[13],
        })
     }
-
-    console.log(formData)
-
-    
-
-   
-
-
+ 
     const handleForm = async () => {
         setContactForm();
         getInput();

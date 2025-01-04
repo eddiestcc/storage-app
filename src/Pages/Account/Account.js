@@ -47,7 +47,7 @@ const Account = () => {
                 </div>
                  {/* RIGHT  */}
                  <div className="flex max-lg:absolute max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-96 flex-start h-screen  bg-slate-300 max-lg:rounded-xl flex-col ll bg-white shadow-xl">
-                    <Cart />
+                    {/* <Cart /> */}
                 </div>
             </div>
         </div>
@@ -57,13 +57,13 @@ const Account = () => {
         <div className="h-screen">
             {/* LEFT  */}
             <div className="flex space-between">
-                <div className="h-screen overflow-auto container">
+                <div className="h-screen overflow-auto ">
                    <AccountInfoCard userData={userData}/>
                    <TabSection />
                 </div>
                  {/* RIGHT  */}
-                 <div className="flex max-lg:absolute max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-96 flex-start h-screen  bg-slate-300 max-lg:rounded-xl flex-col ll bg-white shadow-xl">
-                    <Cart />
+                 <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
+                    {/* <Cart /> */}
                 </div>
             </div>
         </div>

@@ -59,10 +59,7 @@ const dashNavItems = [
                 return(
                     <div>
                         <menu className='h-screen block'>
-                            <div className="pt-36 pb-36">
-                                {/* <Searchfield /> */}
-                            </div>
-                            <div className='flex content-center justify-center flex-wrap'>
+                            <div className='flex content-center justify-center flex-wrap pt-72'>
                                 {dashNavItems.map((item, i) => {
                                     return(
                                         <div key={i} className='p-5'>

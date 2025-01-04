@@ -1,9 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UnitDisplayContext, UnitsContext } from "../../Pages/Rental/Rental";
+import { calcCheckout } from "../../utils";
 
     const HiddenMenu = ({ setDisplayUnitInfo }) => {
 
         const availableUnits = useContext(UnitsContext);
+        const displayUnitInfo = useContext(UnitDisplayContext);
+
 
         
         let uniqueObjArray = [];
@@ -28,6 +31,7 @@ import { UnitDisplayContext, UnitsContext } from "../../Pages/Rental/Rental";
         }
 
         const handleUnitSelect = (e) => {
+            // Selection of unit displayed
             let selection = Number(e.target.textContent);
             for (let i = 0, length = availableUnits.length; i < length; i++) {
                     const unit = availableUnits[i];
@@ -35,11 +39,14 @@ import { UnitDisplayContext, UnitsContext } from "../../Pages/Rental/Rental";
                     setDisplayUnitInfo({
                         number: unit.unit_number,
                         size: unit.size,
-                        type: unit.full_unit_type
+                        type: unit.full_unit_type,
+                        price: unit.price
                     })
                     break;
                 }
             }
+            // Calculate total
+        //    calcCheckout(displayUnitInfo.price)
         }
 
         return (

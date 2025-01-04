@@ -18,7 +18,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={token}>
-      <div className='w-full' >
+      <div className='w-full h-screen overflow-hidden' >
         <Nav setToken={setToken}/>
         <Routes>
           <Route index element={<Signin setToken={setToken} />}/>
