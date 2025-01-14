@@ -126,7 +126,7 @@ return(
                     </div>
                 </div>
                  {/* TABLE */}
-                <div className="h-screen w-screen overflow-auto">
+                <div className="h-screen w-screen overflow-y-auto">
                     <div className="rounded-xl overflow-x-max">
                         <table className="table">
                             {/* head */}

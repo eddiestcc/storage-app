@@ -4,11 +4,12 @@ import GoodsForm from "../../Components/Forms/GoodsForm/GoodsForm";
 import QuestionForm from "../../Components/Forms/QuestionForm/QuestionForm";
 import SelectUnitButton from "../../Components/Buttons/SelectUnitButton/SelectUnitButton";
 import Cart from "../../Components/Cart/Cart";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const UnitsContext = createContext(null);
 export const UnitDisplayContext = createContext(null);
 export const FormContext = createContext(null);
+export const CartContext = createContext(null);
 
 const Rental = () => {
 
@@ -42,7 +43,8 @@ const Rental = () => {
     const [displayUnitInfo, setDisplayUnitInfo] = useState({
         number: '',
         size: '',
-        type: ''
+        type: '',
+        price: '',
     })
 
     
@@ -64,12 +66,14 @@ const Rental = () => {
         zip: '',
     })
 
-    console.log(formData)
+      // Cart
+    const [cart , setCart] = useState([])
 
     return(
         <UnitsContext.Provider value={units}>
         <UnitDisplayContext.Provider value={displayUnitInfo}>
         <FormContext.Provider value={formData}>
+        <CartContext.Provider value={cart}>
             <div className="relative bg-white">
                 {/* LEFT  */}
                 <div className="relative inset-0 pt-10 flex space-between max-lg:flex-wrap h-full">
@@ -101,6 +105,7 @@ const Rental = () => {
                     </div>
                 </div>
             </div>
+        </CartContext.Provider>
         </FormContext.Provider>
         </UnitDisplayContext.Provider>
         </UnitsContext.Provider>

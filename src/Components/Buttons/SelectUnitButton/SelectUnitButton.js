@@ -5,6 +5,7 @@ import { UnitDisplayContext } from "../../../Pages/Rental/Rental";
     const SelectUnitButton = ({setDisplayUnitInfo}) => {
 
         const displayUnitInfo = useContext(UnitDisplayContext);
+        console.log(displayUnitInfo,'display')
 
         // let { number, size, type } = displayUnitInfo;
 

@@ -34,6 +34,7 @@ import { returnInputField } from "../../utils";
                             }
                         });
                         const origin = location.state?.from?.pathname || '/dashboard';
+                        const dashboard = '/dashboard'
                         navigate(origin);
                     } catch (err) {
                         console.log(err.message);

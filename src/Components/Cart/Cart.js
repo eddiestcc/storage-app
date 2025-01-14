@@ -1,7 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext, UnitDisplayContext } from "../../Pages/Rental/Rental";
+import { tempBanner } from "../../utils";
+import { useNavigate } from "react-router-dom";
+import Input from "../Input/Input";
 
 export default function Cart({setDisplayUnitInfo}) {
+  const navigate = useNavigate();
+
+  // contact form button
+  const contactButton = document.getElementsByClassName("contact-form-button");
+  const missingCheckmarkBanner = document.getElementById("missing-checkmark-banner");
+  const missingUnitBanner = document.getElementById("missing-unit-banner");
+  const paymentSuccessBanner = document.getElementById("payment-success-banner");
+  const errorBanner = document.getElementById("error-banner");
+
 
   // Get today's date 
   const today = new Date()
@@ -15,15 +27,19 @@ export default function Cart({setDisplayUnitInfo}) {
 
   const handleRemoveItem = () => {
       setDisplayUnitInfo({
-        number: null,
-        size: null,
-        price: null
+        number: '',
+        size: '',
+        price: ''
     });
   }
 
   const handlePay = async () => {
-    console.log(formData, 'you paid!')
-    console.log(displayUnitInfo)
+
+    const contactBtnValue1 = contactButton[0].children[0].classList.value
+    const contactBtnValue2 = contactButton[0].children[1].classList.value
+    console.log(contactBtnValue1, contactBtnValue2)
+
+    // Destructure all information from form and unit that we will submit to the backend server.
     const 
     {   
       firstName ,
@@ -48,43 +64,64 @@ export default function Cart({setDisplayUnitInfo}) {
     const paidThruDate = formattedPaidThruDate;
     const rentalStartDate = today;
 
+    // Address of backend server
     const url = "http://localhost:3001/rental"
-    try {
-        const response = await fetch(url, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    firstName: firstName,
-                    lastName: lastName,
-                    dateOfBirth: dateOfBirth,
-                    primaryPhone: primaryPhone,
-                    secondaryPhone: secondaryPhone,
-                    email: email,
-                    licenseNumber: licenseNumber,
-                    licenseExpiration: licenseExpiration,
-                    licenseState: licenseState,
-                    street: street,
-                    apartment: apartment,
-                    city: city,
-                    state: state,
-                    zip: zip,
-                    unit: number,
-                    rentalStartDate: rentalStartDate,
-                    price: price,
-                    paidThruDate: paidThruDate,
-                })
-            });
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        await response.json()
-        .then((data) => {
-            console.log(data, 'data')
-        });
-    } catch (err) {
-        console.log(err.message);
+
+    // Checks to make sure form contact button has saved all information that will be submitted
+    // If not, this fails.
+    if(contactBtnValue1 === 'hidden') {
+      tempBanner(missingCheckmarkBanner);
+    } else if (number.length === 0) {
+      tempBanner(missingUnitBanner)
+    } else if(contactBtnValue2 === 'hidden') {
+      try {
+          const response = await fetch(url, {
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  method: "POST",
+                  body: JSON.stringify({
+                      firstName: firstName,
+                      lastName: lastName,
+                      dateOfBirth: dateOfBirth,
+                      primaryPhone: primaryPhone,
+                      secondaryPhone: secondaryPhone,
+                      email: email,
+                      licenseNumber: licenseNumber,
+                      licenseExpiration: licenseExpiration,
+                      licenseState: licenseState,
+                      street: street,
+                      apartment: apartment,
+                      city: city,
+                      state: state,
+                      zip: zip,
+                      unit: number,
+                      rentalStartDate: rentalStartDate,
+                      price: price,
+                      paidThruDate: paidThruDate,
+                  })
+              });
+          if (!response.ok) {
+              throw new Error(`Response status: ${response.status}`);
+          }
+          await response.json()
+          .then((res) => {
+              if (res.status === 'success') {
+                const id = res.id.rows[0].id;
+                tempBanner(paymentSuccessBanner);
+                setTimeout(() => {
+                  const dashboard = '/dashboard'
+                  const accountPage = `/account/${id}`
+                  navigate(accountPage);
+                }, 3000);
+              } else {
+                tempBanner(errorBanner);
+              }
+          });
+      } catch (err) {
+          tempBanner(errorBanner);
+          console.log(err.message);
+      }
     }
   }
   
@@ -154,9 +191,6 @@ export default function Cart({setDisplayUnitInfo}) {
                   </div>
                 </div>
               </div>
-
-       
-
   )
 }
 
