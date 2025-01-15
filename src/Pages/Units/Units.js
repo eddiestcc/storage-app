@@ -1,44 +1,27 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import FilterListItem from "../../Components/FilterListItem/FilterListItem";
+import { getUsers, toggleDrawer } from "../../utils";
 
 const Units = () => {
 
+    // State for the table list
     const [tableList, setTableList] = useState([]);
-
     const [visibleTable , setVisibleTable] = useState([])
-
     const [loading, setLoading] = useState(null);
 
     useEffect(() => {
-        const getUsers = async () => {
-            try {
-              setLoading(true);
-              const url = "http://localhost:3001/units";
-              const response = await fetch(url);
-              if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-              }
-              const userList = await response.json();
-              return userList;
-            } catch (error) {
-              console.error(error.message);
-            } finally {
-            setLoading(false);
-            }
-          };
-        getUsers()
+        // Fetch users from database
+        // Needs two parameters: setLoading and the url
+        getUsers(setLoading,"http://localhost:3001/units")
         .then(data => {
+            // Set the table list to the data
             setTableList(data);
             setVisibleTable(data);
         });
   }, []);
 
-  const toggleDrawer = () => {
-    const filter = document.getElementsByClassName('filter');
-    filter[0].classList.toggle('hidden');
-  }
-
+// If loading is true, return the loading screen
 if (loading) {
     // LOADING SCREEN 
     return(
@@ -111,6 +94,7 @@ if (loading) {
     )
     
 } else {
+// If loading is false, return the table
 return(
         <div className="h-screen">
             {/* container for unit list and sidebar  */}
@@ -142,6 +126,7 @@ return(
                             </thead>
                             {visibleTable.map((info, index) => {
 
+                                
                                 const { id, unit_number, unit_type, paid_thru_date, account_name, rental_start_date } = info;
                                 let { unit_status } = info;
                                 let buttonClass = '';

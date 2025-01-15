@@ -9,6 +9,7 @@ import './app.css'
 import Account from './Pages/Account/Account';
 import Nav from './Pages/Nav/Nav';
 import ProtectedRoute from './ProtectedRoute';
+import Alert from './Components/Alert/Alert';
 
 export const AuthContext = createContext(null);
 
@@ -20,8 +21,9 @@ function App() {
     <AuthContext.Provider value={token}>
       <div className='w-full h-screen overflow-hidden' >
         <Nav setToken={setToken}/>
+        <Alert />
         <Routes>
-          <Route index element={<Signin setToken={setToken} />}/>
+            <Route index element={<Signin setToken={setToken} />}/>
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
             <Route path="/rental" element={<ProtectedRoute><Rental /></ProtectedRoute>}/>
             <Route path="/units" element={<ProtectedRoute><Units /></ProtectedRoute>}/>

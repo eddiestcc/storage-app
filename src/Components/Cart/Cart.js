@@ -1,13 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FormContext, UnitDisplayContext } from "../../Pages/Rental/Rental";
-import { tempBanner } from "../../utils";
+import { getToday, getPaidThruDate, tempBanner } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
+
 
 export default function Cart({setDisplayUnitInfo}) {
+
+  // Contexts
+  const displayUnitInfo = useContext(UnitDisplayContext);
+  const formData = useContext(FormContext);
+
+  // navigate hook
   const navigate = useNavigate();
 
-  // contact form button
+  // DOM Elements
   const contactButton = document.getElementsByClassName("contact-form-button");
   const missingCheckmarkBanner = document.getElementById("missing-checkmark-banner");
   const missingUnitBanner = document.getElementById("missing-unit-banner");
@@ -15,31 +21,17 @@ export default function Cart({setDisplayUnitInfo}) {
   const errorBanner = document.getElementById("error-banner");
 
 
-  // Get today's date 
-  const today = new Date()
-  const formattedToday = today.toLocaleDateString();
-  const next30Days= today.getTime() + 30 * 24 * 60 * 60 * 1000
-  const next30DaysDate = new Date(next30Days);
-  const formattedPaidThruDate = next30DaysDate.toLocaleDateString();
+  const today = getToday();
+  const paidThruDate = getPaidThruDate();
 
-  const displayUnitInfo = useContext(UnitDisplayContext);
-  const formData = useContext(FormContext);
-
-  const handleRemoveItem = () => {
-      setDisplayUnitInfo({
-        number: '',
-        size: '',
-        price: ''
-    });
-  }
-
+  // Handles payment
   const handlePay = async () => {
 
+    // Value of contact form button so we can check if all information has been saved
     const contactBtnValue1 = contactButton[0].children[0].classList.value
     const contactBtnValue2 = contactButton[0].children[1].classList.value
-    console.log(contactBtnValue1, contactBtnValue2)
 
-    // Destructure all information from form and unit that we will submit to the backend server.
+    // Destructure form data
     const 
     {   
       firstName ,
@@ -59,16 +51,16 @@ export default function Cart({setDisplayUnitInfo}) {
        
       } = formData;
 
+    // Destructure unit data
     const { number , price } = displayUnitInfo;
 
-    const paidThruDate = formattedPaidThruDate;
-    const rentalStartDate = today;
+    const status = 'rented';
+
 
     // Address of backend server
     const url = "http://localhost:3001/rental"
 
-    // Checks to make sure form contact button has saved all information that will be submitted
-    // If not, this fails.
+    // Check if all information has been saved, then submits to backend
     if(contactBtnValue1 === 'hidden') {
       tempBanner(missingCheckmarkBanner);
     } else if (number.length === 0) {
@@ -96,7 +88,7 @@ export default function Cart({setDisplayUnitInfo}) {
                       state: state,
                       zip: zip,
                       unit: number,
-                      rentalStartDate: rentalStartDate,
+                      rentalStartDate: today,
                       price: price,
                       paidThruDate: paidThruDate,
                   })
@@ -124,7 +116,8 @@ export default function Cart({setDisplayUnitInfo}) {
       }
     }
   }
-  
+ 
+  // Cart component
   return (
               <div className='h-screen lg:overflow-auto flex flex-col justify-between lg:w-96'>
                 {/* LIST AREA */}
@@ -151,12 +144,12 @@ export default function Cart({setDisplayUnitInfo}) {
                                     <p className="ml-4"> Price: ${displayUnitInfo.price}</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">{displayUnitInfo.size}</p>
-                                <p className="mt-1 text-sm text-gray-500">{formattedToday} - {formattedPaidThruDate}</p>
+                                <p className="mt-1 text-sm text-gray-500">{today} - {paidThruDate}</p>
                               </div>
                               <div className="flex flex-1 items-end justify-between text-sm">
                                 <p className="text-gray-500">{displayUnitInfo.type}</p>
                                 <div className="flex pt-5 ">
-                                  <button onClick={handleRemoveItem} type="button" className="btn btn-sm btn-info btn-outline font-medium text-indigo-600 hover:text-indigo-500">
+                                  <button type="button" className="btn btn-sm btn-info btn-outline font-medium text-indigo-600 hover:text-indigo-500">
                                     Remove
                                   </button>
                                 </div>

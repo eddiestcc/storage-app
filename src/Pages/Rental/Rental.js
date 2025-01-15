@@ -4,18 +4,21 @@ import GoodsForm from "../../Components/Forms/GoodsForm/GoodsForm";
 import QuestionForm from "../../Components/Forms/QuestionForm/QuestionForm";
 import SelectUnitButton from "../../Components/Buttons/SelectUnitButton/SelectUnitButton";
 import Cart from "../../Components/Cart/Cart";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import Alert from "../../Components/Alert/Alert";
 
 export const UnitsContext = createContext(null);
 export const UnitDisplayContext = createContext(null);
 export const FormContext = createContext(null);
 export const CartContext = createContext(null);
 
+
 const Rental = () => {
 
-    // Units from DB state 
+    // Units state
     const [units, setUnits] = useState([]);
 
+    // Get units from DB
     useEffect(() => {
         const getUnits = async () => {
             try {
@@ -39,15 +42,14 @@ const Rental = () => {
             });
     }, []);
 
-    // Show selected unit state 
+    // Selected Units state
     const [displayUnitInfo, setDisplayUnitInfo] = useState({
         number: '',
         size: '',
         type: '',
         price: '',
     })
-
-    
+  
     // Form state 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -66,9 +68,10 @@ const Rental = () => {
         zip: '',
     })
 
-      // Cart
+    // Cart state
     const [cart , setCart] = useState([])
 
+    // Rental Component
     return(
         <UnitsContext.Provider value={units}>
         <UnitDisplayContext.Provider value={displayUnitInfo}>

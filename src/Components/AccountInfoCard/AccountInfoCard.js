@@ -1,20 +1,23 @@
+import { getAccountFields, splitName } from "../../utils";
+
 const AccountInfoCard = ({ userData }) => {
 
-    const { account_name, phone_number, email, street_one, street_two, city, state, zip_code, license_number, license_expiration, license_state, date_of_birth, second_phone_number } = userData;
+    const { 
+    account_name, 
+    phone_number, 
+    email, 
+    street_one, 
+    street_two, 
+    city, 
+    state, 
+    zip_code, 
+    license_number, 
+    license_expiration, 
+    license_state, 
+    date_of_birth, 
+    second_phone_number 
+    } = userData;
    
-    function splitName(fullName) {
-        const split = fullName.split(" ");
-        const firstName = split[0];
-        const lastName = split[split.length - 1];
-
-        return{
-            firstName: firstName,
-            lastName: lastName,
-        }
-    }
-    
-    const firstName = splitName(account_name).firstName;
-    const lastName = splitName(account_name).lastName;
 
     const timeStampBirth = Date.parse(date_of_birth);
     const birthDate = new Date (timeStampBirth);
@@ -24,70 +27,27 @@ const AccountInfoCard = ({ userData }) => {
         day: "numeric"
     })
 
-    const fields = [
-    [
-        'First Name',
-        firstName
-    ],
-    [
-        'Last Name',
-        lastName
-    ],
-    [
-        'Date of Birth',
-       formattedBirthDate
-    ],
-    [
-        'Primary Phone Number',
-       phone_number
-    ],
-    [
-        'Secondary Phone Number',
-       second_phone_number
-    ],
-    [
-        'Email',
-       email
-    ],
-    [
-        'Identification Number',
-       license_number
-    ],
-    [
-        'Identification Expiration',
-       license_expiration
-    ],
-    [
-        'Identification State',
-       license_state
-    ],
-    [
-        'Street',
-       street_one
-    ],
-    [
-        'Apartment/Unit',
-       street_two
-    ],
-    [
-        'City',
-       city
-    ],
-    [
-        'State',
-        state
-    ],
-    [
-        'Zip',
-       zip_code
-    ]
-]
-
+    // Get account fields. The function requires the fields in the argument to be in a specific order.
+    // Order start to finish: account_name, phone_number, email, street_one, street_two, city, state, zip_code, license_number, license_expiration, license_state, formattedBirthDate, second_phone_number
+    const accountFields = getAccountFields(
+        account_name,
+        phone_number, 
+        email, 
+        street_one, 
+        street_two, 
+        city, 
+        state, 
+        zip_code, 
+        license_number, 
+        license_expiration, 
+        license_state, 
+        formattedBirthDate, 
+        second_phone_number,
+        splitName);
     return (
         <div className="flex flex-wrap justify-end bg-base-100">
             <div className=" flex justify-center flex-wrap">
-                {fields.map((data, index) => {
-                    console.log(data, 'data')
+                {accountFields.map((data, index) => {
                     return(
                             <article  key={index} className="hero-content px-8">
                                 <div className="w-72">

@@ -1,38 +1,28 @@
 import { useContext } from "react";
 import { CartContext, UnitDisplayContext, UnitsContext } from "../../Pages/Rental/Rental";
+import { getAvailableUnits, handleUnitSelect } from "../../utils";
 
     const HiddenMenu = ({ setDisplayUnitInfo }) => {
 
-        const availableUnits = useContext(UnitsContext);
-        const cart = useContext(CartContext);
-        const selectedUnit = useContext(UnitDisplayContext);
+        // Get units from context
+        const units = useContext(UnitsContext);
         
-        let uniqueObjArray = [];
+        // Empty available units array to store unique units
+        let availableUnits = [];
 
+        // Counter for loop
         let count = 0;
 
-        for (let key in availableUnits) {
-            const objectSize = availableUnits[key].size;
-            const objectType = availableUnits[key].full_unit_type;
-            const objectId = availableUnits[key].unit_type_id;
 
-            let objTemplate = {id: objectId, size: objectSize, type: objectType};
+        // Loop through units and store unique units in availableUnits array
+        getAvailableUnits(units, availableUnits, count);
 
-            const { id } = objTemplate;
-
-            if (uniqueObjArray.length === 0) {
-                uniqueObjArray.push(objTemplate)
-            } else if (!uniqueObjArray[count].id.includes(id)){
-                uniqueObjArray.push(objTemplate)
-                count = count + 1;
-            }
-        }
-
+        // Handle unit selection and display unit information
         const handleUnitSelect = (e) => {
             // Selection of unit displayed
             let selection = Number(e.target.textContent);
-            for (let i = 0, length = availableUnits.length; i < length; i++) {
-                    const unit = availableUnits[i];
+            for (let i = 0, length = units.length; i < length; i++) {
+                    const unit = units[i];
                 if (unit.unit_number === selection) {
                     
                     setDisplayUnitInfo({
@@ -50,7 +40,7 @@ import { CartContext, UnitDisplayContext, UnitsContext } from "../../Pages/Renta
             <dialog id="my_modal_2" className="modal">
                 <div className="modal-box">
                     {/* HIDDEN MENU HERE */}
-                    {uniqueObjArray.map((object,index) => {
+                    {availableUnits.map((object,index) => {
                         const { size, type } = object;
                         return(
                         <div key={index} className="collapse collapse-arrow bg-sale-200">
@@ -59,7 +49,7 @@ import { CartContext, UnitDisplayContext, UnitsContext } from "../../Pages/Renta
                             <div className="collapse-content">
                             <h1>Select Unit Number</h1>
                                 <div className="space-x-8 space-y-5">
-                                {availableUnits.map ((unit, index) => {
+                                {units.map ((unit, index) => {
                                     const { unit_number } = unit; 
                                     if (object.id === unit.unit_type_id)
                                     return (
