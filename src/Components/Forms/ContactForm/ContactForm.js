@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { formFields, getInput, returnInputField, setContactForm, stateOptions } from "../../../utils"
+import { formatPhoneNumber, formatZip, formFields, getInput, returnInputField, setContactForm, stateOptions } from "../../../utils"
 import { FormContext } from "../../../Pages/Rental/Rental";
 
 const ContactForm = ({ setFormData }) => {
@@ -16,7 +16,7 @@ const ContactForm = ({ setFormData }) => {
         try {
         // Set contact form requires four arguments, the save button, 
         // the form field, the getInput callbackfunction, and the state setter.
-        setContactForm(contactButton, contactField, getInput, setFormData );
+        setContactForm(contactButton, contactField, getInput, setFormData);
         } catch (err) {
             console.error(err.message);
         }
@@ -51,17 +51,19 @@ const ContactForm = ({ setFormData }) => {
                                             <h4 className="text-lg pb-2 font-semibold text-slate-100">{form.fieldName}</h4>
                                             <label className="input px-3 flex items-center bg-slate-100 gap-2 contact-form-field">
                                                 <input 
-                                                onChange={returnInputField} 
                                                 type={form.type} 
                                                 className={form.className} 
                                                 placeholder={form.placeholder}
-                                                pattern={form.pattern} 
+                                                id={form.id}
+                                                onChange={
+                                                    form.function.name === 'formatZip' ? formatZip 
+                                                    : form.function.name === 'formatPhoneNumber' ? formatPhoneNumber 
+                                                    : null}
                                                 />
                                             </label>
                                         </div>
                                     </article>
                                 )
-
                             } else if (form.tag === 'option') {
                                 return (
                                     <article key={index}  className="hero-content px-8">
@@ -80,7 +82,7 @@ const ContactForm = ({ setFormData }) => {
                                         </div>
                                     </article>
                                 )
-                            } 
+                            }
                         })
                     }
                 </div>

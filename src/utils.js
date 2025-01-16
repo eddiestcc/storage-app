@@ -104,123 +104,6 @@ export const dashNavItems = [
    }
 ]
 
-// Form fields for new rental page
-
-export const formFields = [
-   {
-       fieldName:  'First Name' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: 'John',
-       pattern: '[a-z]',
-       tag: 'input',
-   },
-   {
-       fieldName:  'Last Name' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: 'Doe',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'Date of Birth' ,
-       className: 'text-base-300 w-full dark-scheme',
-       type: 'date',
-       placeholder: '01/01/1900',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'Primary Phone Number' ,
-       className: 'text-base-300 w-full',
-       type: 'tel',
-       placeholder: '(999)-999-9999',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'Secondary Phone Number' ,
-       className: 'text-base-300 w-full',
-       type: 'tel',
-       placeholder: '(999)-999-9999',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'Email' ,
-       className: 'text-base-300 w-full',
-       type: 'email',
-       placeholder: 'example@example.com',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'Drivers License Number' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: 'A1B2C3D4E5',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'License Expiration' ,
-       className: 'text-base-300 w-full dark-scheme',
-       type: 'date',
-       placeholder: '01/01/2999',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'License State' ,
-       className: 'text-base-300 w-full bg-transparent',
-       type: 'text',
-       placeholder: 'FL - Florida"',
-       pattern: null,
-       tag: 'option',
-   },
-   {
-       fieldName:  'Street' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: '123 Example St',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'Apartment/Unit' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: 'Apt 100',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'City' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: 'Tampa',
-       pattern: null,
-       tag: 'input',
-   },
-   {
-       fieldName:  'State' ,
-       className: 'text-base-300 w-full bg-transparent',
-       type: 'text',
-       placeholder: 'FL - Florida',
-       pattern: null,
-       tag: 'option',
-   },
-   {
-       fieldName:  'ZIP' ,
-       className: 'text-base-300 w-full',
-       type: 'text',
-       placeholder: '99999',
-       pattern: null,
-       tag: 'input',
-   },
-]
-
 // United States list for forms 
  export const stateOptions = [
     { value: "", label: "" },
@@ -571,3 +454,206 @@ export const getToday = () => {
       zip_code
    ]
 ]}
+
+export const formatPhoneNumber = (e) => {
+   // Need to change the dom input field so that formatting is applied.
+   let inputField = document.getElementById(e.target.id);
+
+   // Checks event and returns only numbers
+   const numbersOnly = e.target.value.replace(/\D/g, '');
+   let formattedNumber = numbersOnly;
+
+   // Formats phone number to (999) 999-9999
+   if (numbersOnly.length > 0) {
+      formattedNumber = `(${numbersOnly.slice(0, 3)}) `;
+      if (numbersOnly.length > 3) {
+        formattedNumber += `${numbersOnly.slice(3, 6)}`;
+        if (numbersOnly.length > 6) {
+          formattedNumber += `-${numbersOnly.slice(6, 10)}`;
+        }
+      }
+    }
+
+   return inputField.value = formattedNumber;
+}
+
+export const formatZip = (e) => {
+   // Need to change the dom input field so that formatting is applied.
+   let inputField = document.getElementById(e.target.id);
+
+   // Checks event and returns only numbers
+   const numbersOnly = e.target.value.replace(/\D/g, '');
+   let formattedNumber = numbersOnly;
+
+   // Formats phone number to (999) 999-9999
+   if (numbersOnly.length > 0) {
+      formattedNumber = `${numbersOnly.slice(0, 5)} `;
+    }
+
+   return inputField.value = formattedNumber;
+}
+
+// Validates format of email
+// export const formatEmail = (e) => {
+//    // Need to change the dom input field so that formatting is applied.
+//    let inputField = document.getElementById(e.target.id);
+
+//    const regex = '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/';
+
+
+//    return inputField.value = formattedNumber;
+// }
+
+// Form fields for new rental page
+export const formFields = [
+   {
+       fieldName:  'First Name' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: 'John',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'Last Name' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: 'Doe',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'Date of Birth' ,
+       className: 'text-base-300 w-full dark-scheme',
+       type: 'date',
+       placeholder: '01/01/1900',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'Primary Phone Number' ,
+       className: 'text-base-300 w-full',
+       type: 'tel',
+       placeholder: '(999)-999-9999',
+       id: 'primary-phone',
+       tag: 'input',
+       function: {
+         name: 'formatPhoneNumber',
+         event: 'onchange',
+      }
+   },
+   {
+       fieldName:  'Secondary Phone Number' ,
+       className: 'text-base-300 w-full',
+       type: 'tel',
+       placeholder: '(999)-999-9999',
+       id: 'secondary-phone',
+       tag: 'input',
+       function: {
+         name: 'formatPhoneNumber',
+         event: 'onchange',
+      }
+   },
+   {
+       fieldName:  'Email' ,
+       className: 'text-base-300 w-full',
+       type: 'email',
+       placeholder: 'example@example.com',
+       id: 'email',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'Drivers License Number' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: 'A1B2C3D4E5',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'License Expiration' ,
+       className: 'text-base-300 w-full dark-scheme',
+       type: 'date',
+       placeholder: '01/01/2999',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'License State' ,
+       className: 'text-base-300 w-full bg-transparent',
+       type: 'text',
+       placeholder: 'FL - Florida"',
+       tag: 'option',
+   },
+   {
+       fieldName:  'Street' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: '123 Example St',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'Apartment/Unit' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: 'Apt 100',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'City' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: 'Tampa',
+       tag: 'input',
+       function: {
+         name: '',
+         event: '',
+      }
+   },
+   {
+       fieldName:  'State' ,
+       className: 'text-base-300 w-full bg-transparent',
+       type: 'text',
+       placeholder: 'FL - Florida',
+       tag: 'option',
+   },
+   {
+       fieldName:  'ZIP' ,
+       className: 'text-base-300 w-full',
+       type: 'text',
+       placeholder: '99999',
+       id: 'zip',
+       tag: 'input',
+       function: {
+             name: 'formatZip',
+             event: 'onchange'
+       }
+   },
+]
