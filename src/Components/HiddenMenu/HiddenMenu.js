@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { CartContext, UnitDisplayContext, UnitsContext } from "../../Pages/Rental/Rental";
-import { getAvailableUnits, handleUnitSelect } from "../../utils";
+import { CartContext, UnitsContext } from "../../Pages/Rental/Rental";
+import { getAvailableUnits } from "../../utils";
 
-    const HiddenMenu = ({ setDisplayUnitInfo }) => {
+    const HiddenMenu = ({ setDisplayUnitInfo, setUpdateCart }) => {
 
         // Get units from context
         const units = useContext(UnitsContext);
-        
+        const cart = useContext(CartContext);
+
         // Empty available units array to store unique units
         let availableUnits = [];
 
@@ -24,13 +25,32 @@ import { getAvailableUnits, handleUnitSelect } from "../../utils";
             for (let i = 0, length = units.length; i < length; i++) {
                     const unit = units[i];
                 if (unit.unit_number === selection) {
-                    
+                    // Set unit information to display
                     setDisplayUnitInfo({
                         number: unit.unit_number,
                         size: unit.size,
                         type: unit.full_unit_type,
                         price: unit.price
                     })
+                    // If nothing is in the cart, add unit to cart
+                    if (cart.length === 0) {
+                        cart.push({item: unit.full_unit_type, price: unit.price, quantity: 1});
+                    } else {
+                    // If a unit is found in cart, update the unit to the newly selected one
+                        let found = false;
+                        for (let i = 0, length = cart.length; i < length; i++) {
+                            if (cart[i].item) {
+                                cart.splice(i, 1);
+                                cart.push({item: unit.full_unit_type, price: unit.price, quantity: 1});
+                                found = true;
+                            }
+                        }
+                    // If no unit is found in cart, add the unit to the cart
+                        if (!found) {
+                            cart.push({item: unit.full_unit_type, price: unit.price, quantity: 1});
+                        }
+                    }
+                    setUpdateCart(true); 
                     break;
                 }
             }

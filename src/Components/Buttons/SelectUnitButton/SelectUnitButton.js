@@ -2,7 +2,7 @@ import { useContext } from "react";
 import HiddenMenu from "../../HiddenMenu/HiddenMenu"
 import { UnitDisplayContext } from "../../../Pages/Rental/Rental";
 
-    const SelectUnitButton = ({setDisplayUnitInfo}) => {
+    const SelectUnitButton = ({setDisplayUnitInfo, setUpdateCart}) => {
 
         const displayUnitInfo = useContext(UnitDisplayContext);
 
@@ -17,7 +17,7 @@ import { UnitDisplayContext } from "../../../Pages/Rental/Rental";
                             Select Unit
                         </button>
                     </div>
-                    <HiddenMenu setDisplayUnitInfo={setDisplayUnitInfo} />
+                    <HiddenMenu setUpdateCart={setUpdateCart} setDisplayUnitInfo={setDisplayUnitInfo} />
                     {/* show selected unit here */}
                     <div className="flex justify-center">
                         <h1 className="text-xl font-black text-base-200 p-5">

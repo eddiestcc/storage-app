@@ -5,12 +5,15 @@ import QuestionForm from "../../Components/Forms/QuestionForm/QuestionForm";
 import SelectUnitButton from "../../Components/Buttons/SelectUnitButton/SelectUnitButton";
 import Cart from "../../Components/Cart/Cart";
 import { createContext, useEffect, useState } from "react";
-import Alert from "../../Components/Alert/Alert";
 
+// Create context
 export const UnitsContext = createContext(null);
 export const UnitDisplayContext = createContext(null);
 export const FormContext = createContext(null);
 export const CartContext = createContext(null);
+export const CartTotalContext = createContext(null);
+export const UpdateCartContext = createContext(null);
+export const SelectInsurnaceContext = createContext(null);
 
 
 const Rental = () => {
@@ -49,6 +52,13 @@ const Rental = () => {
         type: '',
         price: '',
     })
+
+    // Selected insurance state 
+    const [selectInsurance, setSelectInsurance] = useState({
+        type: '',
+        coverage: '',
+        price: '',
+    })
   
     // Form state 
     const [formData, setFormData] = useState({
@@ -70,13 +80,23 @@ const Rental = () => {
 
     // Cart state
     const [cart , setCart] = useState([])
+    const [cartTotal, setCartTotal] = useState( 
+    {
+    tax: '0.00', 
+    grandTotal: '0.00', 
+     });
+    const [updateCart, setUpdateCart] = useState(false);
 
+    
     // Rental Component
     return(
         <UnitsContext.Provider value={units}>
         <UnitDisplayContext.Provider value={displayUnitInfo}>
         <FormContext.Provider value={formData}>
         <CartContext.Provider value={cart}>
+        <CartTotalContext.Provider value={cartTotal}>
+        <UpdateCartContext.Provider value={updateCart}>
+        <SelectInsurnaceContext.Provider value={selectInsurance}>
             <div className="relative bg-white">
                 {/* LEFT  */}
                 <div className="relative inset-0 pt-10 flex space-between max-lg:flex-wrap h-full">
@@ -90,8 +110,8 @@ const Rental = () => {
                         <div className="flex justify-center pt-5">
                             <div  className="justify-center flex flex-wrap p-5 bg-transparent w-11/12 rounded-2xl">
                                 <GoodsForm />
-                                <SelectUnitButton setDisplayUnitInfo={setDisplayUnitInfo}/>
-                                <RentalForm setDisplayUnitInfo={setDisplayUnitInfo} />
+                                <SelectUnitButton setUpdateCart={setUpdateCart} setDisplayUnitInfo={setDisplayUnitInfo}/>
+                                <RentalForm setUpdateCart={setUpdateCart} setSelectInsurance={setSelectInsurance} />
                             </div>
                         </div>
                         <div className="flex justify-center pb-5 pt-5 ">
@@ -104,10 +124,13 @@ const Rental = () => {
                     </div>
                     {/* RIGHT  */}
                     <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
-                        <Cart setDisplayUnitInfo={setDisplayUnitInfo} />
+                        <Cart setUpdateCart={setUpdateCart} setCartTotal={setCartTotal} setDisplayUnitInfo={setDisplayUnitInfo} />
                     </div>
                 </div>
             </div>
+        </SelectInsurnaceContext.Provider>
+        </UpdateCartContext.Provider>
+        </CartTotalContext.Provider>
         </CartContext.Provider>
         </FormContext.Provider>
         </UnitDisplayContext.Provider>

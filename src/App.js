@@ -10,6 +10,7 @@ import Account from './Pages/Account/Account';
 import Nav from './Pages/Nav/Nav';
 import ProtectedRoute from './ProtectedRoute';
 import Alert from './Components/Alert/Alert';
+import LoadingOverlay from './Components/LoadingOverlay/LoadingOverlay';
 
 export const AuthContext = createContext(null);
 
@@ -22,6 +23,7 @@ function App() {
       <div className='w-full h-screen overflow-hidden' >
         <Nav setToken={setToken}/>
         <Alert />
+        <LoadingOverlay />
         <Routes>
             <Route index element={<Signin setToken={setToken} />}/>
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>

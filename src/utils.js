@@ -1,9 +1,11 @@
 export  function returnInputField(event) {
+    event.preventDefault();
     const input = event.target.value;
     return input;
 }
 
 export  function handleClick(event) {
+    event.preventDefault();
     console.log(event);
 }
 
@@ -32,6 +34,36 @@ export const calcTaxes = (price) => {
       element.classList.add('hidden')
     }, 3000);
  };
+
+ export const inputError = (array,param1,param2,param3) => {
+   for (let i = 0 , length = array.length; i < length ; i++) {
+
+      const element = array[i];
+
+      if (param1) {
+         element.classList.add('input-error');
+      } else if (param2) {
+         element.classList.add('input-error');
+      } else if (param3) {
+         element.classList.add('input-error');
+      }
+
+      setTimeout(() => {
+         element.classList.remove('input-error');
+      }, 3000);
+   }
+ }
+
+export const fakeLoad = () => {
+   // Get loading overlay
+   let loadingElement = document.getElementById('loading-overlay');
+   // Make loading overlay visible
+   loadingElement.classList.remove('hidden');
+   // After 5s hide overlay
+   setTimeout(() => {
+      loadingElement.classList.add('hidden');
+   }, 5000);
+}
 
 //  export const addToCart = (item, array) => {
 
@@ -456,6 +488,7 @@ export const getToday = () => {
 ]}
 
 export const formatPhoneNumber = (e) => {
+   e.preventDefault();
    // Need to change the dom input field so that formatting is applied.
    let inputField = document.getElementById(e.target.id);
 
@@ -487,10 +520,72 @@ export const formatZip = (e) => {
 
    // Formats phone number to (999) 999-9999
    if (numbersOnly.length > 0) {
-      formattedNumber = `${numbersOnly.slice(0, 5)} `;
+      formattedNumber = `${numbersOnly.slice(0, 5)}`;
     }
 
    return inputField.value = formattedNumber;
+}
+
+export const formatCreditCard = (e) => {
+   e.preventDefault();
+   // Need to change the dom input field so that formatting is applied.
+   const creditCardField = document.getElementById(e.target.id);
+
+   // Checks event and returns only numbers
+   const numbersOnly = e.target.value.replace(/\D/g, '');
+   let formattedNumber = numbersOnly;
+
+   // Formats credit card to **** **** **** ****
+   if (numbersOnly.length > 0) {
+      formattedNumber = `${numbersOnly.slice(0, 4)} `;
+      if (numbersOnly.length > 4) {
+        formattedNumber += `${numbersOnly.slice(4, 8)} `;
+        if (numbersOnly.length > 8) {
+          formattedNumber += `${numbersOnly.slice(8, 12)} `;
+        } if (numbersOnly.length > 12) {
+         formattedNumber += `${numbersOnly.slice(12, 16)}`;
+       }
+      }
+    }
+
+   return creditCardField.value = formattedNumber;
+}
+
+export const formatExpiryDate = (e) => {
+   e.preventDefault();
+   // Need to change the dom input field so that formatting is applied.
+   const expiryField = document.getElementById(e.target.id);
+
+   // Checks event and returns only numbers
+   const numbersOnly = e.target.value.replace(/\D/g, '');
+   let formattedNumber = numbersOnly;
+
+   // Formats expiry date to ** / **
+   if (numbersOnly.length > 0) {
+      formattedNumber = `${numbersOnly.slice(0, 2)}`;
+      if (numbersOnly.length > 2) {
+        formattedNumber += `/${numbersOnly.slice(2, 4)}`;
+      }
+    }
+
+   return expiryField.value = formattedNumber;
+}
+
+export const formatCVV = (e) => {
+   e.preventDefault();
+   // Need to change the dom input field so that formatting is applied.
+   const cvvField = document.getElementById(e.target.id);
+
+   // Checks event and returns only numbers
+   const numbersOnly = e.target.value.replace(/\D/g, '');
+   let formattedNumber = numbersOnly;
+
+   // Formats expiry date to ****
+   if (numbersOnly.length > 0) {
+      formattedNumber = `${numbersOnly.slice(0, 4)}`;
+    }
+
+   return cvvField.value = formattedNumber;
 }
 
 // Validates format of email
@@ -657,3 +752,36 @@ export const formFields = [
        }
    },
 ]
+
+// Check to see if an item is found in the cart
+export const checkCart = (cartState, setCartState) => {
+   // Checks to see if there is an item in cart.
+   //  If nothing if found, status will be false, else status will be true.
+
+   const length = cartState.length;
+
+   if (!length) {
+      setCartState(false);
+   } else {
+      setCartState(true);
+   }
+
+}
+
+export const insurnaceOptions = [
+{
+   type: 'Insurance',
+   coverage: '2000',
+   price: 10,
+},
+{
+   type: 'Insurance',
+   coverage: '5000',
+   price: 20,
+},
+{
+   type: 'Insurance',
+   coverage: '10000',
+   price: 40,
+},
+];
