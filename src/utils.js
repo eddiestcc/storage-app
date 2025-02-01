@@ -382,7 +382,7 @@ export const getToday = () => {
    filter[0].classList.toggle('hidden');
  }
 
- export const getUserAccountData = async (setUserState, urlAddress) => {
+ export const getUserAccountData = async (setUserState, urlAddress,setNoteState, setLedgerState) => {
    try {
      const url = urlAddress;
      const response = await fetch(url);
@@ -391,7 +391,17 @@ export const getToday = () => {
      }
      await response.json()
      .then(response => {
-      setUserState(response);
+      if (setUserState.typeof === null) {
+         setNoteState(response.accountNotes);
+      } else if (setNoteState === null) {
+         setUserState(response.account);
+      }  else if (setLedgerState === null) {
+         setLedgerState(response.ledger);
+      } else {
+         setNoteState(response.accountNotes); 
+         setUserState(response.account);
+         setLedgerState(response.ledger);
+      }
      });
    } catch (error) {
      console.error(error.message);

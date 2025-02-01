@@ -20,7 +20,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={token}>
-      <div className='w-full h-screen overflow-hidden' >
+      <div className='w-full h-screen overflow-x-hidden' >
         <Nav setToken={setToken}/>
         <Alert />
         <LoadingOverlay />
@@ -29,7 +29,7 @@ function App() {
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
             <Route path="/rental" element={<ProtectedRoute><Rental /></ProtectedRoute>}/>
             <Route path="/units" element={<ProtectedRoute><Units /></ProtectedRoute>}/>
-            <Route path="/retail" element={<ProtectedRoute><Retail /></ProtectedRoute>}/>
+            {/* <Route path="/retail" element={<ProtectedRoute><Retail /></ProtectedRoute>}/> */}
             <Route path="/account/:userID" element={<ProtectedRoute><Account /></ProtectedRoute>}/>
         </Routes>
       </div>

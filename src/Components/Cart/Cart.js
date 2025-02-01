@@ -11,6 +11,7 @@ export const ExpiryDateContext = createContext(null);
 export const CVVContext = createContext(null);
 
 
+
 export default function Cart({setDisplayUnitInfo, setCartTotal, setUpdateCart}) {
 
   // Contexts
@@ -115,6 +116,8 @@ if (updateCart === true) {
     // Destructure unit data
     const { number , price } = displayUnitInfo;
 
+    const total = cartTotal;
+
     const status = 'rented';
 
     // Address of backend server
@@ -161,6 +164,7 @@ if (updateCart === true) {
                       rentalStartDate: today,
                       price: price,
                       paidThruDate: paidThruDate,
+                      total: total
                   })
               });
           // If something is wrong with the response, throw an error

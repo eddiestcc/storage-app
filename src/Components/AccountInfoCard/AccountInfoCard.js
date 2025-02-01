@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { getAccountFields, splitName } from "../../utils";
+import { UserDataContext } from "../../Pages/Account/Account";
 
-const AccountInfoCard = ({ userData }) => {
+const AccountInfoCard = () => {
+
+    // Context 
+    const userData = useContext(UserDataContext);
 
     const { 
     account_name, 
@@ -15,7 +20,9 @@ const AccountInfoCard = ({ userData }) => {
     license_expiration, 
     license_state, 
     date_of_birth, 
-    second_phone_number 
+    second_phone_number,
+    unit_number,
+    id,
     } = userData;
    
 
@@ -44,16 +51,26 @@ const AccountInfoCard = ({ userData }) => {
         formattedBirthDate, 
         second_phone_number,
         splitName);
+
     return (
-        <div className="flex flex-wrap justify-end bg-base-100">
-            <div className=" flex justify-center flex-wrap">
+        <div className="flex flex-wrap">
+            <div className="flex flex-row w-full h-min shadow-xl text-xl font-bold text-base-100 sticky top-0 bg-white">
+                <div className="flex flex-row card-body">
+                    <h2 className="text-blue-800 font-black pr-4">{account_name}</h2>
+                    <h2>Unit Number: {unit_number}</h2>
+                </div>
+                <div className="card-body">
+                    <h2>Account Number: {id}</h2>
+                </div>
+            </div>
+            <div className="flex justify-center flex-wrap bg-white pt-6">
                 {accountFields.map((data, index) => {
                     return(
-                            <article  key={index} className="hero-content px-8">
+                            <article  key={index} className="p-2">
                                 <div className="w-72">
-                                    <h4 className="text-sm pb-2 font-semibold text-slate-400">{data[0]}</h4>
+                                    <h4 className="text-sm pb-2 font-semibold text-base-400">{data[0]}</h4>
                                     <div>
-                                        <h4 className="text-xl pb-2 font-semibold text-slate-100">{data[1]}</h4>
+                                        <h4 className="text-xl pb-2 font-semibold text-base-100">{data[1]}</h4>
                                     </div>
                                 </div>
                             </article>

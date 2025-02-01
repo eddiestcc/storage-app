@@ -1,44 +1,34 @@
+import { useContext } from "react";
+import AllLedgerRow from "../AllLedgerRows/AllLedgerRows";
+import { LedgerDetailsContext } from "../../Pages/Account/Account";
+
 const Ledger = () => {
+
+    const ledgerDetails = useContext(LedgerDetailsContext);
+    
     return (
-        <div className="flex justify-center bg-slate-200">
-            <article className="overflow-x-auto w-full">
-                <table className="table h-80">
-                    {/* head */}
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Balance Due</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {/* row 1 */}
-                    <tr>
-                        <td>11/12/2040</td>
-                        <td>Invoice</td>
-                        <td>$298.10</td>
-                        <td>$298.10</td>
-                    </tr>
-                    {/* row 2 */}
-                    <tr>
-                        <td>11/12/2040</td>
-                        <td>Invoice</td>
-                        <td>$298.10</td>
-                        <td>$298.10</td>
-                    </tr>
-                    {/* row 3 */}
-                    <tr>
-                        <td>11/12/2040</td>
-                        <td>Invoice</td>
-                        <td>$298.10</td>
-                        <td>$298.10</td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div className="flex justify-center rounded-lg bg-white">
+            <article className="w-full rounded-lg">
+                <div className="grid grid-cols-11 h-24 p-4 bg-slate-100 rounded-lg">
+                    <div className="flex items-center col-span-2 pl-2">
+                        <h1>Date</h1>
+                    </div>
+                    <div className="flex items-center col-span-6">
+                        <h1>Details</h1>
+                    </div>
+                    <div className="flex items-center col-span-1">
+                        <h1>Amount</h1>
+                    </div>
+                    <div className="flex items-center col-span-1">
+                        <h1>Balance</h1>
+                    </div>
+                </div>
+                <div id="note-body" className="grid gap-y-2 h-auto pt-4 pb-4">
+                    <AllLedgerRow ledgerDetails={ledgerDetails} />
+                </div>
             </article>
         </div>
-    )
+    );
 }
 
 export default Ledger;

@@ -68,12 +68,12 @@ if (loading) {
                             {/* head */}
                             <thead className="text-2xl text-slate-100 bg-base-100 sticky top-0">
                                 <tr>
-                                <th>Unit Number</th>
-                                <th>Account Name</th>
-                                <th>Unit Type</th>
-                                <th>Paid Thru Date</th>
-                                <th>Rental Start Date</th>
-                                <th>Status</th>
+                                    <td>Unit Number </td>
+                                    <td>Account Name </td>
+                                    <td>Unit Type </td>
+                                    <td>Paid Thru Date </td>
+                                    <td>Rental Start Date </td>
+                                    <td>Status </td>
                                 </tr>
                             </thead>
                         </table>
@@ -116,12 +116,12 @@ return(
                             {/* head */}
                             <thead className="text-2xl text-slate-100 bg-base-100 sticky top-0">
                                 <tr>
-                                <th>Unit Number</th>
-                                <th>Account Name</th>
-                                <th>Unit Type</th>
-                                <th>Paid Thru Date</th>
-                                <th>Rental Start Date</th>
-                                <th>Status</th>
+                                    <td>Unit Number</td>
+                                    <td>Account Name</td>
+                                    <td>Unit Type</td>
+                                    <td>Paid Thru Date</td>
+                                    <td>Rental Start Date</td>
+                                    <td>Status</td>
                                 </tr>
                             </thead>
                             {visibleTable.map((info, index) => {

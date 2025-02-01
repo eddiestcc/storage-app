@@ -1,19 +1,29 @@
 import Cart from "../../Components/Cart/Cart";
 import TabSection from "../../Components/TabSection/TabSection";
 import AccountInfoCard from "../../Components/AccountInfoCard/AccountInfoCard";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserAccountData } from "../../utils";
 
-const Account = () => {
+  // Contexts
+  export const ActiveTabContext = createContext(null);
+  export const UserDataContext = createContext(null);
+  export const UserNoteContext = createContext(null);
+  export const LedgerDetailsContext = createContext(null);
 
-    // state to store user data
+const Account = () => {
+    
+    // States
     const [userData, setUserData] = useState(null);
+    const [userNotes, setUserNotes] = useState(null);
+    const [ledgerDetails, setLedgerDetails] = useState(null);
+
+    // Tells use which tab is currently active (Not complete)
+    const [activeTab, setActiveTab] = useState('');
     const { userID } = useParams();
-  
 
       useEffect(() => {
-       getUserAccountData(setUserData, `http://localhost:3001/accounts/${userID}`)
+       getUserAccountData(setUserData, `http://localhost:3001/accounts/${userID}`,setUserNotes,setLedgerDetails)
       }, [])
     if (!userData) {
       // LOADING PAGE 
@@ -41,20 +51,27 @@ const Account = () => {
       )
     } else {
       return(
-        <div className="h-screen">
-            {/* LEFT  */}
-            <div className="flex space-between">
-                <div className="h-screen overflow-auto ">
-                   <AccountInfoCard userData={userData}/>
-                   <TabSection />
-                </div>
-                 {/* RIGHT  */}
-                 <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
-                    {/* Cart not active */}
-                    {/* <Cart /> */}
-                </div>
-            </div>
-        </div>
+        <ActiveTabContext.Provider value={activeTab}>
+        <UserDataContext.Provider value={userData}>
+        <UserNoteContext.Provider value={userNotes}>
+        <LedgerDetailsContext.Provider value={ledgerDetails}>
+          <div className="h-screen">
+              {/* LEFT  */}
+              <div className="flex space-between">
+                  <div className="bg-base-100">
+                    <AccountInfoCard />
+                    <TabSection setUserNotes={setUserNotes}  />
+                  </div>
+                  {/* RIGHT Cart Section  */}
+                  {/* <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
+                   
+                  </div> */}
+              </div>
+          </div>
+        </LedgerDetailsContext.Provider>
+        </UserNoteContext.Provider>
+        </UserDataContext.Provider>
+        </ActiveTabContext.Provider>
       )
     }  
 }
