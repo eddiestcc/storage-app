@@ -18,8 +18,6 @@ const Account = () => {
     const [userNotes, setUserNotes] = useState(null);
     const [ledgerDetails, setLedgerDetails] = useState(null);
 
-    // Tells use which tab is currently active (Not complete)
-    const [activeTab, setActiveTab] = useState('');
     const { userID } = useParams();
 
       useEffect(() => {
@@ -51,7 +49,6 @@ const Account = () => {
       )
     } else {
       return(
-        <ActiveTabContext.Provider value={activeTab}>
         <UserDataContext.Provider value={userData}>
         <UserNoteContext.Provider value={userNotes}>
         <LedgerDetailsContext.Provider value={ledgerDetails}>
@@ -71,7 +68,6 @@ const Account = () => {
         </LedgerDetailsContext.Provider>
         </UserNoteContext.Provider>
         </UserDataContext.Provider>
-        </ActiveTabContext.Provider>
       )
     }  
 }

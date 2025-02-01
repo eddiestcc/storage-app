@@ -1,6 +1,4 @@
 import { useContext, useState } from "react";
-import NotesPagination from "../NotesPagination/NotesPagination";
-import PostedNote from "../PostedNote/PostedNote";
 import ReactPaginate from "react-paginate";
 import AllPostedNotes from "../AllPostedNotes/AllPostedNotes";
 import { UserNoteContext } from "../../Pages/Account/Account";

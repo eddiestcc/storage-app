@@ -12,7 +12,11 @@ const Notes = ({setUserNotes}) => {
     // State 
     // Holds the current state of the note that will be send to server
     const [note, setNote] = useState([]);
-    const [noNoteMsg, setNoNoteMsg] = useState('No Notes...');
+    const [noNoteMsg, setNoNoteMsg] = useState(
+    <div className="card-body">
+        <h1 className="flex justify-center items-center card-title">There are no notes yet...</h1>
+    </div>
+    );
 
     // Element
     const errorBanner = document.getElementById('error-banner');
@@ -81,7 +85,6 @@ const Notes = ({setUserNotes}) => {
                     <div id="note-body" className="text-lg grid grid-rows-2 gap-y-2 h-auto pt-4 pb-4 rounded">
                         {/* Message here */}
                         {noNoteMsg}
-                        {/* New note */}
                         {note.map((note, index) => (
                             <AddNote 
                             key={index} 

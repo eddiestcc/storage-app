@@ -62,7 +62,8 @@ const AddNote = ({note, index, setNote, setUserNotes,setNoNoteMsg }) => {
                             title: title,
                             textarea: textarea,
                             category: category,
-                            timestamp: timestamp
+                            timestamp: timestamp,
+                            account_number: userData.id
                         })
                     });
 
@@ -92,7 +93,11 @@ const AddNote = ({note, index, setNote, setUserNotes,setNoNoteMsg }) => {
             const cancelNote = () => {
                 setNote([]);
                 if (userNotes.length < 1) {
-                    setNoNoteMsg('No Notes...');
+                    setNoNoteMsg(
+                    <div className="card-body">
+                        <h1 className="flex justify-center items-center card-title">There are no notes yet...</h1>
+                    </div>
+                    );
                 }
             }
 

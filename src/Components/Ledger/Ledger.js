@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import AllLedgerRow from "../AllLedgerRows/AllLedgerRows";
-import { LedgerDetailsContext } from "../../Pages/Account/Account";
+import AllLedgerRows from "../AllLedgerRows/AllLedgerRows";
+
+
 
 const Ledger = () => {
 
-    const ledgerDetails = useContext(LedgerDetailsContext);
     
+
     return (
         <div className="flex justify-center rounded-lg bg-white">
             <article className="w-full rounded-lg">
@@ -24,7 +24,7 @@ const Ledger = () => {
                     </div>
                 </div>
                 <div id="note-body" className="grid gap-y-2 h-auto pt-4 pb-4">
-                    <AllLedgerRow ledgerDetails={ledgerDetails} />
+                    <AllLedgerRows />
                 </div>
             </article>
         </div>
