@@ -1,14 +1,10 @@
 import { useState } from "react";
-import Details from "../Details/Details";
-import Documents from "../Documents/Documents";
 import Ledger from "../Ledger/Ledger";
 import Notes from "../Notes/Notes";
-import NotesPagination from "../NotesPagination/NotesPagination";
+import Documents from "../Documents/Documents";
 
 
-const TabSection = ({setUserNotes}) => {
-
-    const [currentTab, setCurrentTab] = useState('Notes');
+const TabSection = ({setUserNotes, setDocsData}) => {
 
     const updateTab = (e) => {
         const selectedTab = e.target.ariaLabel;
@@ -65,7 +61,7 @@ const TabSection = ({setUserNotes}) => {
                     onClick={updateTab}
                     />
                     <div role="tabpanel" className="tab-content bg-base-100 border-base-300 h-screen w-screen pt-8  p-6">
-                        <Documents />
+                        <Documents setDocsData={setDocsData} />
                     </div>
                     {/* <input 
                     type="radio" 

@@ -162,10 +162,11 @@ return(
                                 })
                                     {/* Paid Thru Date  */}
 
-                                    const pastDue = formattedThruDate < today;
-                                    const current = formattedThruDate >= today; 
-                                    paidThruDate = formattedThruDate;
+                                    const pastDue = paid_thru_date < today;
+                                    const current = paid_thru_date >= today; 
+                                    paidThruDate = paid_thru_date;
                                     rentalStartDate = formattedStartDate;
+
 
                                     if (formattedThruDate === 'Invalid Date' && account_name === null){
                                         paidThruDate = null;

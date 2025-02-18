@@ -22,7 +22,6 @@ const RentalForm = ({setSelectInsurance, setUpdateCart}) => {
 
         // Selection of insurnace displayed
         let selection = e.target.textContent;
-        console.log(selection, 'selection')
         const {type, coverage, price} = selection;
 
         if (selection) {

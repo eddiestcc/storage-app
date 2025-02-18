@@ -345,20 +345,6 @@ export const getToday = () => {
    return formattedPaidThruDate;
  }
 
-   // Adds item to cart (pending)
-  // const addItemToCart = () => {
-
-  // };
-
-  // removes item from cart (pending)
-  // const removeFromCart = () => {
-  //     setDisplayUnitInfo({
-  //       number: '',
-  //       size: '',
-  //       price: ''
-  //   });
-  // }
-
    // Get user data from API
   export const getUsers = async (loadingState, urlAddress,) => {
    try {
@@ -382,7 +368,7 @@ export const getToday = () => {
    filter[0].classList.toggle('hidden');
  }
 
- export const getUserAccountData = async (setUserState, urlAddress,setNoteState, setLedgerState) => {
+ export const getUserAccountData = async (setUserState, urlAddress, setNoteState, setLedgerState, setDocsState) => {
    try {
      const url = urlAddress;
      const response = await fetch(url);
@@ -391,20 +377,15 @@ export const getToday = () => {
      }
      await response.json()
      .then(response => {
-      if (setUserState.typeof === null) {
-         setNoteState(response.accountNotes);
-      } else if (setNoteState === null) {
-         setUserState(response.account);
-      }  else if (setLedgerState === null) {
-         setLedgerState(response.ledger);
-      } else {
-         setNoteState(response.accountNotes); 
-         setUserState(response.account);
-         setLedgerState(response.ledger);
-      }
+      const {account,accountNotes,ledger,documents} = response;
+      setUserState(account);
+      setNoteState(accountNotes); 
+      setLedgerState(ledger);
+      setDocsState(documents);
+
      });
    } catch (error) {
-     console.error(error.message);
+     console.error(error.message, 'utils error');
    }
  }
 

@@ -19,9 +19,6 @@ const Ledger = () => {
                     <div className="flex items-center col-span-1">
                         <h1>Amount</h1>
                     </div>
-                    <div className="flex items-center col-span-1">
-                        <h1>Balance</h1>
-                    </div>
                 </div>
                 <div id="note-body" className="grid gap-y-2 h-auto pt-4 pb-4">
                     <AllLedgerRows />

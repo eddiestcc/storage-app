@@ -8,8 +8,6 @@ const AllLedgerRows = () => {
     // Context
     const ledgerDetails = useContext(LedgerDetailsContext);
 
-    console.log(ledgerDetails,'ld')
-
     const renderNoLedger = () => {
         return (
             <div className="card-body">

@@ -1,14 +1,17 @@
+import { NavLink } from "react-router-dom";
+
 const LedgerRow = ({ledgerRow}) => {
+
     
-    const {date, details, amount} = ledgerRow;
+    const {timestamp, details, amount, transaction_id} = ledgerRow;
 
     const formatAmount = Number(amount).toFixed(2)
 
-    const formatDate = new Intl.DateTimeFormat('en-US', {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric"
-    }).format(Date.parse(date))
+    const dateFormat = new Date(timestamp).toLocaleDateString('en-US', {
+        month:'numeric',
+        day: 'numeric',
+        year:'numeric',
+    })
 
 
     return (
@@ -16,7 +19,7 @@ const LedgerRow = ({ledgerRow}) => {
             <div className="grid col-span-11 bg-none pl-2 pr-2">
                 <div className="grid grid-cols-11 rounded-lg bg-base-100 w-full shadow-xl pt-6 pb-6">
                     <div className="flex items-center col-span-2 pl-2">
-                        <h1>{formatDate}</h1>
+                        <h1>{dateFormat}</h1>
                     </div>
                     <div className="flex items-center col-span-6">
                         <h1>{details}</h1>
@@ -28,11 +31,17 @@ const LedgerRow = ({ledgerRow}) => {
                         <h1></h1>
                     </div>
                     <div className="flex items-center col-span-1">
-                        <div className="dropdown dropdown-top">
+                        <div className="dropdown dropdown-left">
                         <div tabIndex={0} role="button" className="btn btn-xs btn-info">More</div>
-                        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                            <li><a>Receipt</a></li>
-                            <li><a>Refund</a></li>
+                        <ul tabIndex={0} className="dropdown-content menu bg-slate-200 rounded-box z-[1] w-52 p-2 shadow">
+                            <li className="w-full cursor-pointer btn-link btn pt-4 pb-4 no-underline">
+                                <NavLink
+                                // This is the receipt transaction id
+                                to={`/receipt/${transaction_id}`}>
+                                Receipt
+                                </NavLink>
+                            </li>
+                            {/* <li><a>Refund</a></li> */}
                         </ul>
                         </div>
                     </div>

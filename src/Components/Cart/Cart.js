@@ -120,6 +120,8 @@ if (updateCart === true) {
 
     const status = 'rented';
 
+    const timestamp = new Date();
+
     // Address of backend server
     const url = "http://localhost:3001/rental"
 
@@ -164,7 +166,8 @@ if (updateCart === true) {
                       rentalStartDate: today,
                       price: price,
                       paidThruDate: paidThruDate,
-                      total: total
+                      total: total,
+                      timestamp: timestamp
                   })
               });
           // If something is wrong with the response, throw an error

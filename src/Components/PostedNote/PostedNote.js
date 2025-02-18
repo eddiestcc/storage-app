@@ -2,13 +2,13 @@ const PostedNote = ({note}) => {
 
     const {title, textarea, category, timestamp } = note;
 
-    const formatTimestamp = new Intl.DateTimeFormat('en-US', {
-        month: "long",
-        day: "2-digit",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric"
-    }).format(Date.parse(timestamp))
+    const date = new Date(timestamp).toLocaleDateString('en-US', {
+        month:'long',
+        day: 'numeric',
+        year:'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+    })
 
     return (
         <article className="grid grid-cols-10  pt-2 rounded-lg bg-white note-row">
@@ -22,7 +22,7 @@ const PostedNote = ({note}) => {
                                     <h1 className="text-lg text-white">{title}</h1>
                                 </div>
                                 <div>
-                                    <p className="text-base text-xs">{formatTimestamp}</p>
+                                    <p className="text-base text-xs">{date}</p>
                                 </div>
                             </div>
                             <div className="pt-2">
