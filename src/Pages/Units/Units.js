@@ -33,7 +33,6 @@ if (loading) {
                     <button className="btn text-white text-2xl filter-btn">Filter</button>
                     <div className="filter h-min w-screen hidden">
                         <div className="flex justify-evenly rounded-lg bg-slate-700 text-base-content min-h-full p-5">
-                            {/* Sidebar content here */}
                             <div>
                                 <details className="dropdown">
                                 <summary className="btn btn-wide btn-outline">Unit Type</summary>
@@ -100,15 +99,14 @@ return(
             {/* container for unit list and sidebar  */}
             <div className="flex flex-col">
                  {/* FILTER MENU */}
-                <div className="flex flex-col">
+                {/* <div className="flex flex-col">
                     <button onClick={toggleDrawer} className="btn btn-ghost text-base-100 text-2xl filter-btn">Filter</button>
                     <div className="filter h-min w-screen hidden">
                         <div className="bg-base-100 text-base-content min-h-full p-5">
-                            {/* Filter content here */}
                             <FilterListItem tableList={tableList} setVisibleTable={setVisibleTable} />
                         </div>
                     </div>
-                </div>
+                </div> */}
                  {/* TABLE */}
                 <div className="h-screen w-screen overflow-y-auto">
                     <div className="rounded-xl overflow-x-max">

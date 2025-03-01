@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import logo from '../../logo.png'
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../App';
-import { toggleMenu } from '../../utils';
 
 const Nav = ({setToken}) => {
    
@@ -59,16 +58,15 @@ const Nav = ({setToken}) => {
                     Units
                     </NavLink>
                  </div>
-                 <div>
+                 {/* <div>
                     <NavLink className=" flex content-center text-4xl btn btn-block p-11 pb-16" to="/retail" > 
-                    {/* BUTTON TITLE HERE  */}
                     Retail
                     </NavLink>
-                 </div>
+                 </div> */}
                  <div>
                     <NavLink className="flex content-center text-4xl btn btn-block p-11 pb-16" to="/" > 
                     {/* BUTTON TITLE HERE  */}
-                    Logout
+                    Sign Out
                     </NavLink>
                  </div>
                 </ul>

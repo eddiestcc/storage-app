@@ -66,7 +66,7 @@ const Documents = ({setDocsData}) => {
 
     const renderFiles = () => {
         return (
-            <div className="flex justify-center rounded-lg bg-white">
+            <div className="flex w-9/12 justify-center rounded-lg bg-white">
                 <article className="w-full rounded-lg">
                     <div className="grid grid-cols-11 h-24 p-4 bg-slate-100 rounded-lg">
                         <div className="flex items-center col-span-3 pl-2">
@@ -94,7 +94,7 @@ const Documents = ({setDocsData}) => {
 
     const renderNoFiles = () => {
         return (
-            <div className="flex justify-center rounded-lg bg-white">
+            <div className="flex w-9/12 justify-center rounded-lg bg-white">
                 <article className="w-full rounded-lg">
                     <div className="grid grid-cols-11 h-24 p-4 bg-slate-100 rounded-lg">
                         <div className="flex items-center col-span-3 pl-2">

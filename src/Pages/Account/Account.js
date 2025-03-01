@@ -1,9 +1,9 @@
-import Cart from "../../Components/Cart/Cart";
 import TabSection from "../../Components/TabSection/TabSection";
 import AccountInfoCard from "../../Components/AccountInfoCard/AccountInfoCard";
 import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserAccountData } from "../../utils";
+import AccountCart from "../../Components/AccountCart/AccountCart";
 
 
   // Contexts
@@ -12,6 +12,8 @@ import { getUserAccountData } from "../../utils";
   export const UserNoteContext = createContext(null);
   export const LedgerDetailsContext = createContext(null);
   export const DocsDataContext = createContext(null);
+  export const MoveOutDateContext = createContext(null);
+  export const RentContext = createContext(null);
 
 const Account = () => {
 
@@ -21,6 +23,17 @@ const Account = () => {
     const [userNotes, setUserNotes] = useState(null);
     const [ledgerDetails, setLedgerDetails] = useState(null);
     const [docsData, setDocsData] = useState(null);
+    const [moveOutDate, setMoveOutDate] = useState(null);
+    const [rent, setRent] = useState(null);
+    // Cart state
+    const [cart , setCart] = useState([])
+    const [cartTotal, setCartTotal] = useState( 
+    {
+    tax: '0.00', 
+    grandTotal: '0.00', 
+     });
+    const [updateCart, setUpdateCart] = useState(false);
+
 
     const { userID } = useParams();
 
@@ -31,6 +44,8 @@ const Account = () => {
           setUserNotes,
           setLedgerDetails,
           setDocsData,
+          setMoveOutDate,
+          setRent
         )
       }, [])
 
@@ -65,19 +80,23 @@ const Account = () => {
         <UserNoteContext.Provider value={userNotes}>
         <LedgerDetailsContext.Provider value={ledgerDetails}>
         <DocsDataContext.Provider value={docsData}>
+        <MoveOutDateContext.Provider value={moveOutDate}>
+        <RentContext.Provider value={rent}>
           <div className="h-screen">
               {/* LEFT  */}
-              <div className="flex space-between">
-                  <div className="bg-base-100">
+              <div className="flex">
+                  <div className="bg-base-100 h-screen overflow-auto container">
                     <AccountInfoCard />
                     <TabSection setDocsData={setDocsData} setUserNotes={setUserNotes}  />
                   </div>
                   {/* RIGHT Cart Section  */}
-                  {/* <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
-                   
-                  </div> */}
+                  <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
+                    <AccountCart setRent={setRent}/>
+                  </div>
               </div>
           </div>
+        </RentContext.Provider>
+        </MoveOutDateContext.Provider>
         </DocsDataContext.Provider>
         </LedgerDetailsContext.Provider>
         </UserNoteContext.Provider>

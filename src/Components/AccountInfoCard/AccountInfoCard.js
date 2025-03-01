@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getAccountFields, splitName } from "../../utils";
-import { UserDataContext } from "../../Pages/Account/Account";
+import { MoveOutDateContext, UserDataContext } from "../../Pages/Account/Account";
 
 const AccountInfoCard = () => {
 
@@ -10,6 +10,8 @@ const AccountInfoCard = () => {
 
     // Context 
     const userData = useContext(UserDataContext);
+    const moveOut = useContext(MoveOutDateContext);
+
 
     const { 
     account_name, 
@@ -85,15 +87,24 @@ const AccountInfoCard = () => {
             }
             await response.json()
             .then(response => {
-            console.log(closeBtn.click())
-            console.log(response.msg)
+            closeBtn.click();
             setMsg(response.msg)
             });
           } catch (error) {
             console.error(error.message, 'move out error');
           }
-
     }
+
+    // Sets moveout date banner
+    useEffect(() => {
+        for (let i = 0, length = moveOut.length; i < length; i++) {
+            const object = moveOut[i];
+            const notice = object.notice;
+            if (i === length - 1) {
+                setMsg(notice);
+            }
+        }
+    })
 
     return (
         <div className="flex flex-wrap">
@@ -122,13 +133,13 @@ const AccountInfoCard = () => {
                                 <div className="flex justify-center pt-5">
                                     <button onClick={handleMoveOut} className="rounded btn btn-info btn-wide p-2 text-base-300">Confirm</button>
                                 </div>
-                                
                             </div>
                             </dialog>
                         </ul>
                     </div>
                 </div>
             </div>
+            {/* Moveout Alert */}
             <div role="alert" className="rounded-none alert alert-info">{msg}</div>
             <div className="flex justify-center flex-wrap bg-white pt-6">
                 {accountFields.map((data, index) => {

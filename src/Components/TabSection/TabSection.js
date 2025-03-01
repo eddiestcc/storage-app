@@ -39,7 +39,7 @@ const TabSection = ({setUserNotes, setDocsData}) => {
                     aria-label="Notes"
                     onClick={updateTab}
                     defaultChecked />
-                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 h-auto w-screen pt-5 pt-8 p-6 overflow-auto">
+                    <div role="tabpanel" className="tab-content w-screen bg-base-100 h-auto pt-8 pl-12 pb-8">
                         <Notes setUserNotes={setUserNotes}/>
                     </div>
                     <input
@@ -50,7 +50,7 @@ const TabSection = ({setUserNotes, setDocsData}) => {
                     aria-label="Rental Ledger"
                     onClick={updateTab}
                     />
-                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 h-screen w-screen pt-8  p-6">
+                    <div role="tabpanel" className="tab-content w-screen bg-base-100 h-auto pt-8 pl-12 pb-8">
                        <Ledger />
                     </div>
                     <input 
@@ -60,18 +60,9 @@ const TabSection = ({setUserNotes, setDocsData}) => {
                     aria-label="Documents"
                     onClick={updateTab}
                     />
-                    <div role="tabpanel" className="tab-content bg-base-100 border-base-300 h-screen w-screen pt-8  p-6">
+                    <div role="tabpanel" className="tab-content w-screen bg-base-100 h-auto pt-8 pl-12 pb-8">
                         <Documents setDocsData={setDocsData} />
                     </div>
-                    {/* <input 
-                    type="radio" 
-                    name="section-tab" 
-                    role="tab" 
-                    className="tab text-slate-100" 
-                    aria-label="Rental Details" />
-                    <div role="tabpanel" className="tab-content  bg-base-100 border-base-300 h-screen w-screen pt-5  p-6">
-                        <Details />
-                    </div> */}
                 </div>
         </div>
     )

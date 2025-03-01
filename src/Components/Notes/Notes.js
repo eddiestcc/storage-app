@@ -41,7 +41,7 @@ const Notes = ({setUserNotes}) => {
 
     const renderNotes = () => {
         return (
-            <div className="flex justify-center rounded-lg bg-white">
+            <div className="flex w-9/12 justify-center rounded-lg bg-white">
                 <article className="w-full rounded-lg">
                     <div className="grid grid-cols-10 h-24 p-4 bg-slate-100 rounded-lg">
                         <div className="col-span-2">
@@ -69,7 +69,7 @@ const Notes = ({setUserNotes}) => {
 
     const renderNoNotesMessage = () => {
         return (
-            <div className="flex justify-center rounded-lg bg-white">
+            <div className="flex w-9/12 justify-center rounded-lg bg-white">
                 <article className="w-full h-auto">
                     <div className="grid grid-cols-10 h-auto p-4 bg-slate-100 rounded-lg">
                         <div className="col-span-2">

@@ -113,26 +113,6 @@ export const dashNavItems = [
        <line x1="12" y1="22.08" x2="12" y2="12" />
        </svg>,
        Link: 'units',
-   },
-   {
-       Name: 'Retail',
-       Icon: 
-       <svg className="h-8 w-8 text-slate-100"  
-       width="24" 
-       height="24" 
-       viewBox="0 0 24 24" 
-       strokeWidth="2" 
-       stroke="currentColor" 
-       fill="none" 
-       strokeLinecap="round" 
-       strokeLinejoin="round">  
-       <path stroke="none" d="M0 0h24v24H0z"/>  
-       <line x1="3" y1="21" x2="21" y2="21" />  
-       <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />  
-       <path d="M5 21v-10.15" />  <path d="M19 21v-10.15" />  
-       <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
-       </svg>,
-       Link: 'retail',
    }
 ]
 
@@ -368,7 +348,7 @@ export const getToday = () => {
    filter[0].classList.toggle('hidden');
  }
 
- export const getUserAccountData = async (setUserState, urlAddress, setNoteState, setLedgerState, setDocsState) => {
+ export const getUserAccountData = async (setUserState, urlAddress, setNoteState, setLedgerState, setDocsState, setMoveState, setRentState) => {
    try {
      const url = urlAddress;
      const response = await fetch(url);
@@ -377,11 +357,13 @@ export const getToday = () => {
      }
      await response.json()
      .then(response => {
-      const {account,accountNotes,ledger,documents} = response;
+      const {account,accountNotes,ledger,documents, moveOut,rent} = response;
       setUserState(account);
       setNoteState(accountNotes); 
       setLedgerState(ledger);
       setDocsState(documents);
+      setMoveState(moveOut);
+      setRentState(rent)
 
      });
    } catch (error) {
