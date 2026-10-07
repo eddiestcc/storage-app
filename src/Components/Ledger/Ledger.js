@@ -1,4 +1,4 @@
-import AllLedgerRows from "../AllLedgerRows/AllLedgerRows";
+// import AllLedgerRows from "../AllLedgerRows/AllLedgerRows";
 
 
 
@@ -21,7 +21,7 @@ const Ledger = () => {
                     </div>
                 </div>
                 <div id="note-body" className="grid gap-y-2 h-auto pt-4 pb-4">
-                    <AllLedgerRows />
+                    {/* <AllLedgerRows /> */}
                 </div>
             </article>
         </div>

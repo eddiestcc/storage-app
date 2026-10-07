@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { UserNoteContext } from "../../Pages/Account/Account";
-import AddNote from "../AddNote/AddNote";
-import PaginatedNotes from "../PaginatedNotes/PaginatedNotes";
+// import AddNote from "../AddNote/AddNote";
+// import PaginatedNotes from "../PaginatedNotes/PaginatedNotes";
 
 const Notes = ({setUserNotes}) => {
 
@@ -54,10 +54,10 @@ const Notes = ({setUserNotes}) => {
                     <div id="note-body" className="grid gap-y-2 h-auto pt-4 pb-4">
                         {/* New note */}
                         {note.map((note, index) => (
-                            <AddNote key={index} index={index} note={note} setNote={setNote} setUserNotes={setUserNotes}/>
+                            {/* <AddNote key={index} index={index} note={note} setNote={setNote} setUserNotes={setUserNotes}/> */}
                         ))}
                         {/* All posted notes */}
-                        <PaginatedNotes itemsPerPage={4} />
+                        {/* <PaginatedNotes itemsPerPage={4} /> */}
                     </div>
                 </article>
             </div>
@@ -83,14 +83,14 @@ const Notes = ({setUserNotes}) => {
                         {/* Message here */}
                         {noNoteMsg}
                         {note.map((note, index) => (
-                            <AddNote 
+                            {/* <AddNote 
                             key={index} 
                             index={index} 
                             note={note} 
                             setNote={setNote} 
                             setUserNotes={setUserNotes} 
                             setNoNoteMsg={setNoNoteMsg}
-                            />
+                            /> */}
                         ))}
                     </div>
                 </article>

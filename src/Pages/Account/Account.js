@@ -3,7 +3,7 @@ import AccountInfoCard from "../../Components/AccountInfoCard/AccountInfoCard";
 import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserAccountData } from "../../utils";
-import AccountCart from "../../Components/AccountCart/AccountCart";
+// import AccountCart from "../../Components/AccountCart/AccountCart";
 
 
   // Contexts
@@ -91,7 +91,7 @@ const Account = () => {
                   </div>
                   {/* RIGHT Cart Section  */}
                   <div className="flex max-lg:sticky max-lg:w-screen max-lg:inset-x-0 max-lg:bottom-0 max-lg:h-min flex-start h-screen bg-slate-300 max-lg:rounded-xl flex-col  bg-white shadow-xl">
-                    <AccountCart setRent={setRent}/>
+                    {/* <AccountCart setRent={setRent}/> */}
                   </div>
               </div>
           </div>
