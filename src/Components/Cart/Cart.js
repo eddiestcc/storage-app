@@ -11,7 +11,6 @@ export const ExpiryDateContext = createContext(null);
 export const CVVContext = createContext(null);
 
 
-
 export default function Cart({setDisplayUnitInfo, setCartTotal, setUpdateCart}) {
 
   // Contexts
@@ -116,9 +115,7 @@ if (updateCart === true) {
     // Destructure unit data
     const { number , price } = displayUnitInfo;
 
-    const total = cartTotal;
-
-    const timestamp = new Date();
+    const status = 'rented';
 
     // Address of backend server
     const url = "http://localhost:3001/rental"
@@ -164,8 +161,6 @@ if (updateCart === true) {
                       rentalStartDate: today,
                       price: price,
                       paidThruDate: paidThruDate,
-                      total: total,
-                      timestamp: timestamp
                   })
               });
           // If something is wrong with the response, throw an error
@@ -186,6 +181,7 @@ if (updateCart === true) {
                 }, 5300);
                 const id = res.id.rows[0].id;
                 setTimeout(() => {
+                  const dashboard = '/dashboard'
                   const accountPage = `/account/${id}`
                   navigate(accountPage);
                 }, 8500);

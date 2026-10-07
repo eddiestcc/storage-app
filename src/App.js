@@ -11,7 +11,6 @@ import Nav from './Pages/Nav/Nav';
 import ProtectedRoute from './ProtectedRoute';
 import Alert from './Components/Alert/Alert';
 import LoadingOverlay from './Components/LoadingOverlay/LoadingOverlay';
-import Receipt from './Pages/Receipt/Receipt';
 
 export const AuthContext = createContext(null);
 
@@ -21,7 +20,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={token}>
-      <div className='w-full h-screen overflow-x-hidden' >
+      <div className='w-full h-screen overflow-hidden' >
         <Nav setToken={setToken}/>
         <Alert />
         <LoadingOverlay />
@@ -32,8 +31,6 @@ function App() {
             <Route path="/units" element={<ProtectedRoute><Units /></ProtectedRoute>}/>
             <Route path="/retail" element={<ProtectedRoute><Retail /></ProtectedRoute>}/>
             <Route path="/account/:userID" element={<ProtectedRoute><Account /></ProtectedRoute>}/>
-            <Route path="/receipt/:transaction_id" element={<ProtectedRoute><Receipt/></ProtectedRoute>}/>
-            <Route path="/documents/:document_id" element={<ProtectedRoute><Receipt/></ProtectedRoute>}/>
         </Routes>
       </div>
     </AuthContext.Provider>

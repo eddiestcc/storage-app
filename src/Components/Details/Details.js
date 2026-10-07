@@ -1,13 +1,13 @@
 const Details = () => {
     return (
-        <div className="flex justify-center text-base-100 rounded-lg bg-white">
-            <article className="overflow-auto h-96  w-full">
+        <div className="flex justify-center bg-slate-200">
+            <article className="overflow-x-auto w-full">
                 {/* Content 1 Account Information */}
                 <table className="table h-auto">
                     {/* head */}
                     <thead>
                     <tr>
-                        <td>Primary Account Info</td>
+                        <th>Primary Account Info</th>
                     </tr>
                     </thead>
                     <tbody>
