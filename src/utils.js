@@ -211,7 +211,10 @@ export const dashNavItems = [
        const formInput = currentInput.firstChild.value;
        // Check to see if field is empty and if so, send an error. 
        if (formInput.length < 1) {
-           console.error(`A form field is blank. Please review.`)
+         currentInput.classList.add('input-error');
+         setTimeout(() => {
+            currentInput.classList.remove('input-error');
+         }, 3000);
        } else {
          allInputs.push({input: currentInputTitle, value: formInput});
        } 

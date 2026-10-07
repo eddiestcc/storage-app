@@ -28,7 +28,6 @@ const LedgerRow = ({ledgerRow}) => {
                         <h1>$ {formatAmount}</h1>
                     </div>
                     <div className="flex items-center col-span-1">
-                        <h1></h1>
                     </div>
                     <div className="flex items-center col-span-1">
                         <div className="dropdown dropdown-left">

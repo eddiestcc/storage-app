@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import FilterListItem from "../../Components/FilterListItem/FilterListItem";
-import { getUsers, toggleDrawer } from "../../utils";
+import { getUsers } from "../../utils";
 
 const Units = () => {
 
@@ -150,18 +150,15 @@ return(
                                 })
 
                                 const findDelinquentStatus = () => {
-                                    {/* Todays date  */}
-                                    const date = new Date;
-                                    const getToday = date.getTime()
+                                    const date = new Date();
+                                    const getToday = date.getTime();
                                     const today = new Date(getToday).toLocaleDateString("en-US", {
                                     year: "numeric",
                                     month: "numeric",
                                     day: "numeric"
                                 })
-                                    {/* Paid Thru Date  */}
 
                                     const pastDue = paid_thru_date < today;
-                                    const current = paid_thru_date >= today; 
                                     paidThruDate = paid_thru_date;
                                     rentalStartDate = formattedStartDate;
 
@@ -182,7 +179,6 @@ return(
                                         return unit_status;
                                     }
                                 }
-
                                 findDelinquentStatus();
                                 if (id) {
                                     return(
@@ -231,7 +227,6 @@ return(
                                                 </tr>
                                             </tbody>
                                         )
-
                                     }
                                 }      
                             )}

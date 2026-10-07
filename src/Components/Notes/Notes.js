@@ -18,9 +18,6 @@ const Notes = ({setUserNotes}) => {
     </div>
     );
 
-    // Element
-    const errorBanner = document.getElementById('error-banner');
-
     const handleNewNote = () => {
 
         setNoNoteMsg(null);

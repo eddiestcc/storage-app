@@ -63,7 +63,7 @@ const Receipt = () => {
     }
 
      // fetch request
-    useEffect(() => {
+    useEffect((transaction_id) => {
         fetchReceipt(`http://localhost:3001/receipt/${transaction_id}`, setTransaction);
         
     }, []);

@@ -118,8 +118,6 @@ if (updateCart === true) {
 
     const total = cartTotal;
 
-    const status = 'rented';
-
     const timestamp = new Date();
 
     // Address of backend server
@@ -188,7 +186,6 @@ if (updateCart === true) {
                 }, 5300);
                 const id = res.id.rows[0].id;
                 setTimeout(() => {
-                  const dashboard = '/dashboard'
                   const accountPage = `/account/${id}`
                   navigate(accountPage);
                 }, 8500);

@@ -5,7 +5,6 @@ import { MoveOutDateContext, UserDataContext } from "../../Pages/Account/Account
 const AccountInfoCard = () => {
 
     // State
-    const [moveOutDate, setMoveOutDate] = useState(null);
     const [msg, setMsg] = useState(null);
 
     // Context 
@@ -96,7 +95,7 @@ const AccountInfoCard = () => {
     }
 
     // Sets moveout date banner
-    useEffect(() => {
+    useEffect((setMsg) => {
         for (let i = 0, length = moveOut.length; i < length; i++) {
             const object = moveOut[i];
             const notice = object.notice;

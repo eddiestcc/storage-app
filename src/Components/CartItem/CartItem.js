@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../Pages/Rental/Rental';
-import { checkCart } from '../../utils';
 
 
 const CartItem = ({displayUnitInfo , removeItemFromCart, today , paidThruDate, setUpdateCart}) => {
